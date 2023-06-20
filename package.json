@@ -14,7 +14,7 @@
     "dev:debug": "npm run server:debug",
     "format": "prettier --write 'src/**/*.js' '**/*.{js,md,json,config.js,test.js,graphql.js}'",
     "format:check": "prettier --check 'src/**/*.js' '**/*.{js,md,json,config.js,test.js,graphql.js}'",
-    "postinstall": "husky install",
+    "postinstall": "npm run setup:husky",
     "lint": "npm run lint:js",
     "lint:fix": "eslint . --fix",
     "lint:js": "eslint .",
@@ -24,7 +24,8 @@
     "server:watch": "nodemon --exec babel-node ./src",
     "server:debug": "nodemon --exec babel-node --inspect ./src",
     "prestart": "npm run build",
-    "start": "NODE_ENV=production node --use-strict ./.server"
+    "start": "NODE_ENV=production node --use-strict ./.server",
+    "setup:husky": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\""
   },
   "author": "Defra DDTS",
   "license": "OGL-UK-3.0",
