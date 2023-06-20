@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "1a0453af-5e71-4810-a53c-85b44f4dabce",
+		"name": "CDP Node.js Backend Template",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "858554"
+	},
+	"item": [
+		{
+			"name": "Entities",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{root}}{{appPrefix}}/entities",
+					"host": [
+						"{{root}}{{appPrefix}}"
+					],
+					"path": [
+						"entities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Entity",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{root}}{{appPrefix}}/entities/3a7e15b1-3fb7-4e53-8ece-8eb96c7b6f61",
+					"host": [
+						"{{root}}{{appPrefix}}"
+					],
+					"path": [
+						"entities",
+						"3a7e15b1-3fb7-4e53-8ece-8eb96c7b6f61"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{root}}{{appPrefix}}/health",
+					"host": [
+						"{{root}}{{appPrefix}}"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

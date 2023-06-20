@@ -1,0 +1,12 @@
+name: Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  cdp-workflows:
+    uses: defra-cdp-sandpit/cdp-workflows/.github/workflows/node-publish.yml@main
+    with:
+      imageName: 'cdp-node-backend-template'
