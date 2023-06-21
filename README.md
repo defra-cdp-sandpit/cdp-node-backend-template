@@ -85,8 +85,8 @@ $ npm run
 A [Postman](https://www.postman.com/) collection and environment are available for making calls to the Teams and
 Repositories API. Simply import the collection and environment into Postman.
 
-- [CDP Node.js Backend Template Postman Collection](postman/cdp-node.js-backend-template.postman_collection.json)
-- [CDP Node.js Backend Template Postman Environment](postman/cdp-node.js-backend-template.postman_environment.json)
+- [CDP Node Backend Template Postman Collection](postman/cdp-node-backend-template.postman_collection.json)
+- [CDP Node Backend Template Postman Environment](postman/cdp-node-backend-template.postman_environment.json)
 
 ## Versioning
 
