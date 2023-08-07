@@ -5,8 +5,24 @@ on:
     branches:
       - main
 
+permissions:
+  id-token: write
+  contents: write
+  pull-requests: write
+
+env:
+  AWS_REGION: eu-west-2
+  AWS_ACCOUNT_ID: 163841473800
+
 jobs:
   cdp-workflows:
-    uses: defra-cdp-sandpit/cdp-workflows/.github/workflows/node-publish.yml@main
-    with:
-      imageName: 'cdp-node-backend-template'
+    name: Build, version and publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Build all the stuff
+        uses: defra-cdp-sandpit/cdp-build-action/build@main
+        with:
+          version: ${{ steps.version.outputs.new_tag }}
