@@ -12,5 +12,16 @@ on:
       - ready_for_review
 
 jobs:
-  cdp-workflows:
-    uses: defra-cdp-sandpit/cdp-workflows/.github/workflows/node-check-pull-request.yml@main
+  pr-validator:
+    name: Run Pull Request Checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm install
+      - run: npm run format:check
+      - run: npm run lint
+      - run: npm test
