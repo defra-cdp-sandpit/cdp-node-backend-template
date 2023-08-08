@@ -15,14 +15,14 @@ env:
   AWS_ACCOUNT_ID: 163841473800
 
 jobs:
-  cdp-workflows:
-    name: Build, version and publish
+  build:
+    name: CDP-build-workflow
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
         uses: actions/checkout@v3
 
-      - name: Build all the stuff
+      - name: Build and Publish
         uses: defra-cdp-sandpit/cdp-build-action/build@main
         with:
-          version: ${{ steps.version.outputs.new_tag }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
