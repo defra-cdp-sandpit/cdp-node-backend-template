@@ -6,7 +6,6 @@ import { router } from '~/src/api/router'
 import { requestLogger } from '~/src/helpers/request-logger'
 import { mongoPlugin } from '~/src/helpers/mongodb'
 import { failAction } from '~/src/helpers/fail-action'
-import { catchAll } from '~/src/helpers/errors'
 import { populateDb } from '~/src/helpers/db/populate-db'
 
 async function createServer() {
@@ -28,17 +27,15 @@ async function createServer() {
     }
   })
 
-  await server.register({ plugin: mongoPlugin, options: {} })
-
   await server.register(requestLogger)
+
+  await server.register({ plugin: mongoPlugin, options: {} })
 
   await server.register(router, {
     routes: { prefix: appConfig.get('appPathPrefix') }
   })
 
   await server.register(populateDb)
-
-  server.ext('onPreResponse', catchAll)
 
   return server
 }
