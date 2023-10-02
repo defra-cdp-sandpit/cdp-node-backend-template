@@ -5,7 +5,8 @@ import { createLogger } from '~/src/helpers/logger'
 const logger = createLogger()
 
 process.on('unhandledRejection', (error) => {
-  logger.info('Unhandled rejection', error)
+  logger.info('Unhandled rejection')
+  logger.error(error)
   process.exit(1)
 })
 
