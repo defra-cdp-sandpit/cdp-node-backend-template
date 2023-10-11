@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb'
 
-import { appConfig } from '~/src/config'
+import { config } from '~/src/config'
 
 const mongoPlugin = {
   name: 'mongodb',
@@ -11,8 +11,8 @@ const mongoPlugin = {
       readPreference: 'secondary'
     }
 
-    const mongoUrl = new URL(appConfig.get('mongoUri'))
-    const databaseName = appConfig.get('mongoDatabase')
+    const mongoUrl = new URL(config.get('mongoUri'))
+    const databaseName = config.get('mongoDatabase')
 
     server.logger.info('Setting up mongodb')
 
