@@ -1,8 +1,6 @@
 import convict from 'convict'
 import path from 'path'
 
-import { version } from '~/package.json'
-
 const config = convict({
   env: {
     doc: 'The application environment.',
@@ -15,11 +13,6 @@ const config = convict({
     format: 'port',
     default: 3001,
     env: 'PORT'
-  },
-  version: {
-    doc: 'Api version',
-    format: String,
-    default: version
   },
   serviceName: {
     doc: 'Api Service Name',
