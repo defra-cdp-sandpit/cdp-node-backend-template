@@ -1,4 +1,4 @@
-# CDP Node Backend Template
+# CDP Node.js Backend Template
 
 Core delivery platform Node.js Backend Template.
 

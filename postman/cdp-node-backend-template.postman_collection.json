@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "1a0453af-5e71-4810-a53c-85b44f4dabce",
-		"name": "CDP Node Backend Template",
+		"name": "CDP Node.js Backend Template",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "858554"
 	},
