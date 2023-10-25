@@ -23,6 +23,6 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build and Publish
-        uses: defra-cdp-sandpit/cdp-build-action/build@main
+        uses: DEFRA/cdp-build-action/build@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
