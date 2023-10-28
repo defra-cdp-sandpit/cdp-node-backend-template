@@ -12,9 +12,6 @@ Core delivery platform Node.js Backend Template.
 - [API endpoints](#api-endpoints)
 - [Calling API endpoints](#calling-api-endpoints)
   - [Postman](#postman)
-- [Versioning](#versioning)
-  - [Auto minor versioning](#auto-minor-versioning)
-  - [Major or Patch versioning](#major-or-patch-versioning)
 - [Docker](#docker)
   - [Development Image](#development-image)
   - [Production Image](#production-image)
@@ -87,32 +84,6 @@ Repositories API. Simply import the collection and environment into Postman.
 
 - [CDP Node Backend Template Postman Collection](postman/cdp-node-backend-template.postman_collection.json)
 - [CDP Node Backend Template Postman Environment](postman/cdp-node-backend-template.postman_environment.json)
-
-## Versioning
-
-### Auto minor versioning
-
-The [Publish GitHub Actions workflow](./.github/workflows/publish.yml) auto versions a Pull Requests code with a `minor`
-version once it has been merged into the `main` branch.
-All you have to do is commit your code and raise a Pull Request and the pipeline will auto version your code for you.
-
-### Major or Patch versioning
-
-If you wish to `patch` or `major` version your codebase use:
-
-```bash
-$ npm version <patch|major>
-```
-
-Then:
-
-- Push this code with the auto generated commit to your GitHub Repository
-- Raise a Pull Request
-- Merge your code into the `main` branch
-- The [Publish GitHub Actions workflow](./.github/workflows/publish.yml) will tag and push your `major` or `patch`
-  version tags to your GitHub Repository
-- The [Publish GitHub Actions workflow](./.github/workflows/publish.yml) will release your `major` or `patch`
-  versioned code
 
 ## Docker
 
