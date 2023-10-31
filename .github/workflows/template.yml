@@ -1,0 +1,39 @@
+name: Templating
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: write
+  pull-requests: write
+
+jobs:
+  templating:
+    if: github.run_number == 1 && github.repository != 'cdp-dotnet-backend-template'
+    name: CDP-templating-workflow
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+      - name: Find and replace
+        run: |
+          cd ${{ github.repository}}
+          find ./ -type f -exec sed -i 's/cdp-node-backend-template/${{ github.repository }}/g' {} \;
+          find ./ -type f -exec sed -i 's/CDP Node.js Backend Template/${{ github.repository }}/g' {} \;
+          contents="$(jq '.version = "0.0.0"' package.json)"
+          echo -E "${contents}" > package.json
+          contents="$(jq '.version = "0.0.0"' package-lock.json)"
+          echo -E "${contents}" > package-lock.json
+          contents="$(jq '.packages[""].version = "0.0.0"' package-lock.json)"
+          echo -E "${contents}" > package-lock.json
+          rm .github/workflows/template.yml
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'github-actions@github.com'
+          git add -A
+          git commit -m "Applying template changes"
+          git push origin main
