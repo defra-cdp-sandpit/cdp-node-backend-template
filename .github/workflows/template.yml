@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   templating:
-    if: github.run_number == 1 && github.repository != 'cdp-dotnet-backend-template'
+    if: github.run_number == 1 && github.repository != 'cdp-node-backend-template'
     name: CDP-templating-workflow
     runs-on: ubuntu-latest
     steps:
