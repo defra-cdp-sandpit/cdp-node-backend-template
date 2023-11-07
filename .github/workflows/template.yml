@@ -22,8 +22,8 @@ jobs:
         run: echo "REPOSITORY_NAME=$(echo '${{ github.repository }}' | awk -F'/' '{print $NF}')" >> $GITHUB_ENV
       - name: Find and replace
         run: |
-          find ./ -type f -exec sed -i 's/cdp-node-backend-template/${{ env.REPOSITORY_NAME }}/g' {} \;
-          find ./ -type f -exec sed -i 's/CDP Node.js Backend Template/${{ env.REPOSITORY_NAME }}/g' {} \;
+          find . -name .git -prune -o -name .github -prune -o -type f -exec sed -i 's/cdp-node-backend-template/${{ env.REPOSITORY_NAME }}/g' {} \;
+          find . -name .git -prune -o -name .github -prune -o -type f -exec sed -i 's/CDP Node.js Backend Template/${{ env.REPOSITORY_NAME }}/g' {} \;
           contents="$(jq '.version = "0.0.0"' package.json)"
           echo -E "${contents}" > package.json
           contents="$(jq '.version = "0.0.0"' package-lock.json)"
