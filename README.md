@@ -28,8 +28,8 @@ easier to use the Node Version Manager [nvm](https://github.com/creationix/nvm)
 To use the correct version of Node.js for this application, via nvm:
 
 ```bash
-$ cd cdp-node-backend-template
-$ nvm use
+cd cdp-node-backend-template
+nvm use
 ```
 
 ## Local development
@@ -39,7 +39,7 @@ $ nvm use
 Install application dependencies:
 
 ```bash
-$ npm install
+npm install
 ```
 
 ### Development
@@ -47,7 +47,7 @@ $ npm install
 To run the application in `development` mode run:
 
 ```bash
-$ npm run dev
+npm run dev
 ```
 
 ### Production
@@ -55,7 +55,7 @@ $ npm run dev
 To mimic the application running in `production` mode locally run:
 
 ```bash
-$ npm start
+npm start
 ```
 
 ### Npm scripts
@@ -64,7 +64,7 @@ All available Npm scripts can be seen in [package.json](./package.json)
 To view them in your command line run:
 
 ```bash
-$ npm run
+npm run
 ```
 
 ## API endpoints
@@ -92,13 +92,13 @@ Repositories API. Simply import the collection and environment into Postman.
 Build:
 
 ```bash
-$ docker build --target development --no-cache --tag cdp-node-backend-template:development .
+docker build --target development --no-cache --tag cdp-node-backend-template:development .
 ```
 
 Run:
 
 ```bash
-$ docker run -e GITHUB_API_TOKEN -p 3008:3008 cdp-node-backend-template:development
+docker run -e GITHUB_API_TOKEN -p 3008:3008 cdp-node-backend-template:development
 ```
 
 ### Production image
@@ -112,7 +112,7 @@ docker build --no-cache --tag cdp-node-backend-template .
 Run:
 
 ```bash
-$ docker run -e GITHUB_API_TOKEN -p 3001:3001 cdp-node-backend-template
+docker run -e GITHUB_API_TOKEN -p 3001:3001 cdp-node-backend-template
 ```
 
 ## Licence
