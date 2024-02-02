@@ -66,6 +66,18 @@ const config = convict({
     doc: 'path for mongodb TLS truststore',
     format: '*',
     env: 'MONGO_CERT_PATH'
+  },
+  httpProxy: {
+    doc: 'HTTP Proxy',
+    format: String,
+    default: '',
+    env: 'CDP_HTTP_PROXY'
+  },
+  httpsProxy: {
+    doc: 'HTTPS Proxy',
+    format: String,
+    default: '',
+    env: 'CDP_HTTPS_PROXY'
   }
 })
 
