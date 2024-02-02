@@ -42,7 +42,8 @@
     "lodash": "4.17.21",
     "mongodb": "6.1.0",
     "node-fetch": "2.7.0",
-    "pino": "8.16.0"
+    "pino": "8.16.0",
+    "undici": "6.6.0"
   },
   "devDependencies": {
     "@babel/cli": "7.23.0",
