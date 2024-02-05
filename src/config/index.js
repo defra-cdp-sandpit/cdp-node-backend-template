@@ -1,5 +1,6 @@
 import convict from 'convict'
 import path from 'path'
+import { getTrustStoreCerts } from '~/src/config/helpers/get-trust-store-certs'
 
 const config = convict({
   env: {
@@ -58,13 +59,13 @@ const config = convict({
   },
   mongoDatabase: {
     doc: 'database for mongodb',
-    format: '*',
+    format: String,
     default: 'cdp-node-backend-template',
     env: 'MONGO_DATABASE'
   },
   mongoCertPath: {
     doc: 'path for mongodb TLS truststore',
-    format: '*',
+    format: String,
     env: 'MONGO_CERT_PATH'
   },
   httpProxy: {
@@ -78,6 +79,11 @@ const config = convict({
     format: String,
     default: '',
     env: 'CDP_HTTPS_PROXY'
+  },
+  trustStore: {
+    doc: 'CA Certificates',
+    format: Array,
+    default: getTrustStoreCerts(process.env)
   }
 })
 
