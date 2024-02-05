@@ -63,11 +63,6 @@ const config = convict({
     default: 'cdp-node-backend-template',
     env: 'MONGO_DATABASE'
   },
-  mongoCertPath: {
-    doc: 'path for mongodb TLS truststore',
-    format: String,
-    env: 'MONGO_CERT_PATH'
-  },
   httpProxy: {
     doc: 'HTTP Proxy',
     format: String,
