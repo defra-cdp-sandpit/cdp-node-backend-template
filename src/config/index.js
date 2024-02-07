@@ -60,13 +60,15 @@ const config = convict({
   httpProxy: {
     doc: 'HTTP Proxy',
     format: String,
-    default: '',
+    nullable: true,
+    default: null,
     env: 'CDP_HTTP_PROXY'
   },
   httpsProxy: {
     doc: 'HTTPS Proxy',
     format: String,
-    default: '',
+    nullable: true,
+    default: null,
     env: 'CDP_HTTPS_PROXY'
   }
 })
