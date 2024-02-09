@@ -5,7 +5,7 @@ import { Url } from 'url'
 const proxyAgent = () => {
   const httpsProxy = config.get('httpsProxy')
 
-  if (httpsProxy) {
+  if (!httpsProxy) {
     return null
   } else {
     const proxyUrl = new Url(httpsProxy)
