@@ -9,7 +9,7 @@ const nonProxyFetch = (url, opts) => {
 
 const proxyFetch = (url, opts) => {
   const httpsProxy = config.get('httpsProxy')
-  if (httpsProxy) {
+  if (!httpsProxy) {
     return nonProxyFetch(url, opts)
   } else {
     return undiciFetch(url, {
