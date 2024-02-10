@@ -40,11 +40,11 @@ async function createServer() {
     }
   })
 
+  await server.register(requestLogger)
+
   if (isProduction) {
     await server.register(secureContext)
   }
-
-  await server.register(requestLogger)
 
   await server.register({ plugin: mongoPlugin, options: {} })
 
