@@ -24,11 +24,6 @@ const config = convict({
     format: String,
     default: path.normalize(path.join(__dirname, '..', '..'))
   },
-  appPathPrefix: {
-    doc: 'Application url path prefix',
-    format: String,
-    default: '/cdp-node-backend-template'
-  },
   isProduction: {
     doc: 'If this application running in the production environment',
     format: Boolean,
