@@ -48,9 +48,7 @@ async function createServer() {
 
   await server.register({ plugin: mongoPlugin, options: {} })
 
-  await server.register(router, {
-    routes: { prefix: config.get('appPathPrefix') }
-  })
+  await server.register(router)
 
   await server.register(populateDb)
 
