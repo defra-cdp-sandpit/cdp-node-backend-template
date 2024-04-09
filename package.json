@@ -4,7 +4,7 @@
   "description": "CDP Backend Template",
   "main": "src/index.js",
   "engines": {
-    "node": "20.3.0"
+    "node": ">=20.11.1"
   },
   "scripts": {
     "build": "npm run build:server",
