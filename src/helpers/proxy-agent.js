@@ -3,12 +3,12 @@ import { HttpsProxyAgent } from 'https-proxy-agent'
 import { Url } from 'url'
 
 const proxyAgent = () => {
-  const httpsProxy = config.get('httpsProxy')
+  const proxy = config.get('httpsProxy') ?? config.get('httpProxy')
 
-  if (!httpsProxy) {
+  if (!proxy) {
     return null
   } else {
-    const proxyUrl = new Url(httpsProxy)
+    const proxyUrl = new Url(proxy)
     return {
       url: proxyUrl,
       agent: new HttpsProxyAgent(proxyUrl)

@@ -8,14 +8,14 @@ const nonProxyFetch = (url, opts) => {
 }
 
 const proxyFetch = (url, opts) => {
-  const httpsProxy = config.get('httpsProxy')
-  if (!httpsProxy) {
+  const proxy = config.get('httpsProxy') ?? config.get('httpProxy')
+  if (!proxy) {
     return nonProxyFetch(url, opts)
   } else {
     return undiciFetch(url, {
       ...opts,
       dispatcher: new ProxyAgent({
-        uri: httpsProxy,
+        uri: proxy,
         keepAliveTimeout: 10,
         keepAliveMaxTimeout: 10
       })
