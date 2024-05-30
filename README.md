@@ -50,6 +50,14 @@ To run the application in `development` mode run:
 npm run dev
 ```
 
+### Testing
+
+To test the application run:
+
+```bash
+npm run test
+```
+
 ### Production
 
 To mimic the application running in `production` mode locally run:
@@ -79,11 +87,55 @@ npm run
 
 ### Postman
 
-A [Postman](https://www.postman.com/) collection and environment are available for making calls to the Teams and
-Repositories API. Simply import the collection and environment into Postman.
+A [Postman](https://www.postman.com/) collection and environment are available for making calls to the Entities and
+Health APIs. Simply import the collection and environment into Postman.
 
 - [CDP Node Backend Template Postman Collection](postman/cdp-node-backend-template.postman_collection.json)
 - [CDP Node Backend Template Postman Environment](postman/cdp-node-backend-template.postman_environment.json)
+
+## Development helpers
+
+### MongoDB
+
+If you require a write lock for Mongo you can either wrap your code with:
+
+```
+import { acquireLock, releaseLock} from '~/src/helpers/mongo/mongo-lock'
+
+async function someLockingFunction({someId, someParams}) {
+  const lock = await acquireLock(resource: 'some-resource', id: someId)
+  try {
+
+    await someFunction( { someId, someParams } )
+
+  }
+  finally {
+    await releaseLock(lock)
+  }
+}
+```
+
+Or define a wrapper method with:
+
+```
+import { executeLock } from '~/src/helpers/mongo/mongo-lock'
+
+async function someFunctionWithLock(someId, someParams) {
+  return await executeLock({
+    resource: 'some-resource',
+    id: someId,
+    fn: someFunction.bind(null, {someId, someParams})
+  });
+}
+
+async function doSomething() {
+  const someId = 'some-id';
+  return Promise.all([
+    someFunctionWithLock( someId, someParams: {something: 'something'} ),
+    someFunctionWithLock( someId, someParams: {something: 'something-else'}),
+  ])
+}
+```
 
 ## Docker
 
