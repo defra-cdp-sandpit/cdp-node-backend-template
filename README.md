@@ -97,45 +97,43 @@ Health APIs. Simply import the collection and environment into Postman.
 
 ### MongoDB
 
-If you require a write lock for Mongo you can either wrap your code with:
+If you require a write lock for Mongo you can aquire it via `server.locker` or `request.locker`:
 
+```javascript
+async function doStuff(server) {
+  await using lock = await server.locker.lock('unique-resource-name')
+
+  if (!lock) {
+    // Lock unavailable
+    return
+  }
+
+  // do stuff
+
+  // lock automatically released
+}
 ```
-import { acquireLock, releaseLock} from '~/src/helpers/mongo/mongo-lock'
 
-async function someLockingFunction({someId, someParams}) {
-  const lock = await acquireLock(resource: 'some-resource', id: someId)
+Or manually release it without `using`:
+
+```javascript
+async function doStuff(server) {
+  const lock = await server.locker.lock('unique-resource-name')
+
+  if (!lock) {
+    // Lock unavailable
+    return
+  }
+
   try {
-
-    await someFunction( { someId, someParams } )
-
-  }
-  finally {
-    await releaseLock(lock)
+    // do stuff
+  } finally {
+    await lock.free()
   }
 }
 ```
 
-Or define a wrapper method with:
-
-```
-import { executeLock } from '~/src/helpers/mongo/mongo-lock'
-
-async function someFunctionWithLock(someId, someParams) {
-  return await executeLock({
-    resource: 'some-resource',
-    id: someId,
-    fn: someFunction.bind(null, {someId, someParams})
-  });
-}
-
-async function doSomething() {
-  const someId = 'some-id';
-  return Promise.all([
-    someFunctionWithLock( someId, someParams: {something: 'something'} ),
-    someFunctionWithLock( someId, someParams: {something: 'something-else'}),
-  ])
-}
-```
+Keep it small and atomic.
 
 ## Docker
 
