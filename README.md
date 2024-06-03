@@ -77,18 +77,18 @@ npm run
 
 ## API endpoints
 
-| Endpoint                       | Description  |
-| :----------------------------- | :----------- |
-| `GET: /health`                 | Health       |
-| `GET: /v1/entities`            | Entities     |
-| `GET: /v1/entities/<entityId>` | Entity by ID |
+| Endpoint             | Description                    |
+| :------------------- | :----------------------------- |
+| `GET: /health`       | Health                         |
+| `GET: /example    `  | Example API (remove as needed) |
+| `GET: /example/<id>` | Example API (remove as needed) |
 
 ## Calling API endpoints
 
 ### Postman
 
-A [Postman](https://www.postman.com/) collection and environment are available for making calls to the Entities and
-Health APIs. Simply import the collection and environment into Postman.
+A [Postman](https://www.postman.com/) collection and environment are available for making calls to the cdp-node-backend-template API.
+Simply import the collection and environment into Postman.
 
 - [CDP Node Backend Template Postman Collection](postman/cdp-node-backend-template.postman_collection.json)
 - [CDP Node Backend Template Postman Environment](postman/cdp-node-backend-template.postman_environment.json)
