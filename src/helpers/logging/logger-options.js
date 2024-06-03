@@ -4,6 +4,7 @@ import { config } from '~/src/config'
 
 const loggerOptions = {
   enabled: !config.get('isTest'),
+  ignorePaths: ['/health'],
   redact: {
     paths: ['req.headers.authorization', 'req.headers.cookie', 'res.headers'],
     remove: true

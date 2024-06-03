@@ -1,22 +1,22 @@
 import {
-  entityController,
-  entitiesController
+  exampleFindOneController,
+  exampleFindAllController
 } from '~/src/api/example/controllers'
 
 const example = {
   plugin: {
-    name: 'entities',
+    name: 'example',
     register: async (server) => {
       server.route([
         {
           method: 'GET',
-          path: '/entities',
-          ...entitiesController
+          path: '/example',
+          ...exampleFindAllController
         },
         {
           method: 'GET',
-          path: '/entities/{entityId}',
-          ...entityController
+          path: '/example/{exampleId}',
+          ...exampleFindOneController
         }
       ])
     }

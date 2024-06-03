@@ -1,4 +1,4 @@
-import { entityController } from '~/src/api/example/controllers/entity'
-import { entitiesController } from '~/src/api/example/controllers/entities'
+import { exampleFindOneController } from '~/src/api/example/controllers/example-find-one-controller'
+import { exampleFindAllController } from '~/src/api/example/controllers/example-find-all-controller'
 
-export { entityController, entitiesController }
+export { exampleFindOneController, exampleFindAllController }
