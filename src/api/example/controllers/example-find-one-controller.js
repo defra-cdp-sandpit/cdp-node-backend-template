@@ -1,11 +1,11 @@
 import Boom from '@hapi/boom'
 import { isNull } from 'lodash'
 
-import { getEntity } from '~/src/api/example/helpers/get-entity'
+import { findExampleData } from '~/src/api/example/helpers/find-example-data'
 
-const entityController = {
+const exampleFindOneController = {
   handler: async (request, h) => {
-    const entity = await getEntity(request.db, request.params.entityId)
+    const entity = await findExampleData(request.db, request.params.exampleId)
 
     if (isNull(entity)) {
       return Boom.boomify(Boom.notFound())
@@ -15,4 +15,4 @@ const entityController = {
   }
 }
 
-export { entityController }
+export { exampleFindOneController }
