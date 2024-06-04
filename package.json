@@ -42,6 +42,7 @@
     "https-proxy-agent": "7.0.4",
     "joi": "17.12.3",
     "lodash": "4.17.21",
+    "mongo-locks": "3.0.2",
     "mongodb": "6.5.0",
     "node-fetch": "^2.7.0",
     "pino": "8.20.0",
