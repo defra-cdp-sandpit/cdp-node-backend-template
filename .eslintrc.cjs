@@ -9,13 +9,20 @@ module.exports = {
   extends: ['standard', 'prettier', 'plugin:jest-formatting/recommended'],
   overrides: [
     {
+      files: ['**/*.cjs'],
+      parserOptions: {
+        sourceType: 'commonjs'
+      }
+    },
+    {
       files: ['**/*.test.js'],
       plugins: ['jest'],
       extends: ['plugin:jest/recommended', 'plugin:jest-formatting/recommended']
     }
   ],
   parserOptions: {
-    ecmaVersion: 'latest'
+    ecmaVersion: 'latest',
+    sourceType: 'module'
   },
   plugins: ['prettier', 'jest', 'jest-formatting'],
   rules: {
