@@ -2,7 +2,7 @@
   "name": "cdp-node-backend-template",
   "version": "0.1.0",
   "description": "CDP Backend Template",
-  "main": "src/index.js",
+  "main": ".server/index.js",
   "engines": {
     "node": ">=20.11.1"
   },
@@ -24,7 +24,7 @@
     "server:watch": "nodemon --exec babel-node ./src",
     "server:debug": "nodemon --exec babel-node --inspect ./src",
     "prestart": "npm run build",
-    "start": "NODE_ENV=production node --use-strict ./.server",
+    "start": "NODE_ENV=production node --use-strict .",
     "setup:husky": "node -e \"try { (await import('husky')).default() } catch (e) { if (e.code !== 'ERR_MODULE_NOT_FOUND') throw e }\" --input-type module"
   },
   "author": "Defra DDTS",
