@@ -168,6 +168,20 @@ Run:
 docker run -e GITHUB_API_TOKEN -p 3001:3001 cdp-node-backend-template
 ```
 
+### Docker Compose
+
+A local environment with:
+
+- Localstack for AWS services (S3, SQS)
+- Redis
+- MongoDB
+- This service.
+- A commented out frontend example.
+
+```bash
+docker compose up --build -d
+```
+
 ## Licence
 
 THIS INFORMATION IS LICENSED UNDER THE CONDITIONS OF THE OPEN GOVERNMENT LICENCE found at:
