@@ -95,26 +95,9 @@ Simply import the collection and environment into Postman.
 
 ## Development helpers
 
-### MongoDB
+### MongoDB Locks
 
-If you require a write lock for Mongo you can aquire it via `server.locker` or `request.locker`:
-
-```javascript
-async function doStuff(server) {
-  await using lock = await server.locker.lock('unique-resource-name')
-
-  if (!lock) {
-    // Lock unavailable
-    return
-  }
-
-  // do stuff
-
-  // lock automatically released
-}
-```
-
-Or manually release it without `using`:
+If you require a write lock for Mongo you can acquire it via `server.locker` or `request.locker`:
 
 ```javascript
 async function doStuff(server) {
@@ -134,6 +117,26 @@ async function doStuff(server) {
 ```
 
 Keep it small and atomic.
+
+You may use **using** for the lock resource management.
+Note test coverage reports do not like that syntax.
+
+```javascript
+async function doStuff(server) {
+  await using lock = await server.locker.lock('unique-resource-name')
+
+  if (!lock) {
+    // Lock unavailable
+    return
+  }
+
+  // do stuff
+
+  // lock automatically released
+}
+```
+
+Helper methods are also available in `/src/helpers/mongo-lock.js`.
 
 ## Docker
 
