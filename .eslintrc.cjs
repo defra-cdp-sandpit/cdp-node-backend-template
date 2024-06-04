@@ -6,7 +6,14 @@ module.exports = {
     jest: true,
     'jest/globals': true
   },
-  extends: ['standard', 'prettier', 'plugin:jest-formatting/recommended'],
+  extends: [
+    'standard',
+    'prettier',
+    'plugin:import/recommended',
+    'plugin:jest-formatting/recommended',
+    'plugin:n/recommended',
+    'plugin:promise/recommended'
+  ],
   overrides: [
     {
       files: ['**/*.cjs'],
@@ -24,14 +31,22 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  plugins: ['prettier', 'jest', 'jest-formatting'],
+  plugins: ['import', 'jest', 'jest-formatting', 'n', 'promise', 'prettier'],
   rules: {
     'prettier/prettier': 'error',
     'no-console': 'error',
 
     // Check for mandatory file extensions
     // https://nodejs.org/api/esm.html#mandatory-file-extensions
-    'import/extensions': ['error', 'ignorePackages']
+    'import/extensions': ['error', 'ignorePackages'],
+
+    // Skip rules handled by TypeScript compiler
+    'import/default': 'off',
+    'import/namespace': 'off',
+    'n/no-extraneous-require': 'off',
+    'n/no-extraneous-import': 'off',
+    'n/no-missing-require': 'off',
+    'n/no-missing-import': 'off'
   },
   settings: {
     'import/resolver': {
