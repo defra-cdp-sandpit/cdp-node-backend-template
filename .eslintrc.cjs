@@ -29,5 +29,11 @@ module.exports = {
     'prettier/prettier': 'error',
     'no-console': 'error'
   },
+  settings: {
+    'import/resolver': {
+      node: true,
+      typescript: true
+    }
+  },
   ignorePatterns: ['.server', '.public', 'src/__fixtures__', 'coverage']
 }

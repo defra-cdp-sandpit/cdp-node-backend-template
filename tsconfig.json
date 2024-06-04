@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "module": "NodeNext",
+    "noEmit": true,
+    "paths": {
+      "~/*": ["./*"]
+    },
+    "resolveJsonModule": true
+  },
+  "exclude": [".cache", ".public", ".server", "node_modules"],
+  "include": ["**/*.cjs", "**/*.js"]
+}
