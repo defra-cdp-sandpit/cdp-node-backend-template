@@ -33,7 +33,12 @@ module.exports = {
   },
   plugins: ['import', 'jest', 'jest-formatting', 'n', 'promise', 'prettier'],
   rules: {
-    'prettier/prettier': 'error',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto'
+      }
+    ],
     'no-console': 'error',
 
     // Check for mandatory file extensions
