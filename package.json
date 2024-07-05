@@ -22,8 +22,8 @@
     "postversion": "git add package.json package-lock.json && git commit -m $npm_package_version",
     "test": "jest --coverage --verbose",
     "test:watch": "jest --watch",
-    "server:watch": "nodemon --exec babel-node ./src",
-    "server:debug": "nodemon --exec babel-node --inspect ./src",
+    "server:watch": "nodemon --exec tsx --enable-source-maps ./src",
+    "server:debug": "nodemon --exec tsx --enable-source-maps --inspect ./src",
     "prestart": "npm run build",
     "start": "NODE_ENV=production node --use-strict .",
     "setup:husky": "node -e \"try { (await import('husky')).default() } catch (e) { if (e.code !== 'ERR_MODULE_NOT_FOUND') throw e }\" --input-type module"
@@ -48,12 +48,12 @@
     "node-fetch": "^2.7.0",
     "pino": "8.20.0",
     "pino-pretty": "11.1.0",
+    "tsx": "4.16.2",
     "undici": "6.12.0"
   },
   "devDependencies": {
     "@babel/cli": "7.24.1",
     "@babel/core": "7.24.4",
-    "@babel/node": "7.23.9",
     "@babel/preset-env": "7.24.4",
     "babel-jest": "29.7.0",
     "babel-loader": "9.1.3",
