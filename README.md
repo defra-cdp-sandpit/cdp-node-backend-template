@@ -163,7 +163,7 @@ docker build --target development --no-cache --tag cdp-node-backend-template:dev
 Run:
 
 ```bash
-docker run -e GITHUB_API_TOKEN -p 3008:3008 cdp-node-backend-template:development
+docker run -e PORT=3001 -p 3001:3001 cdp-node-backend-template:development
 ```
 
 ### Production image
@@ -177,7 +177,7 @@ docker build --no-cache --tag cdp-node-backend-template .
 Run:
 
 ```bash
-docker run -e GITHUB_API_TOKEN -p 3001:3001 cdp-node-backend-template
+docker run -e PORT=3001 -p 3001:3001 cdp-node-backend-template
 ```
 
 ### Docker Compose
