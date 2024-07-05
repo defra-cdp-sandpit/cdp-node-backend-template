@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "npm run build:server",
-    "build:server": "babel --delete-dir-on-start --ignore \"**/*.test.js\" --ignore \"**/__fixtures__\" --ignore \"**/test-helpers\" --copy-files --no-copy-ignored --out-dir ./.server ./src",
+    "build:server": "NODE_ENV=production babel --delete-dir-on-start --ignore \"**/*.test.js\" --ignore \"**/__fixtures__\" --ignore \"**/test-helpers\" --copy-files --no-copy-ignored --out-dir ./.server ./src",
     "docker:dev": "NODE_ENV=development npm run server:watch",
     "dev": "npm run server:watch",
     "dev:debug": "npm run server:debug",
