@@ -1,26 +1,14 @@
-import { config } from '~/src/config'
-import { createServer } from '~/src/api/server'
 import { createLogger } from '~/src/helpers/logging/logger'
+import { startServer, stopServer } from '~/src/helpers/server'
+import process from 'node:process'
 
 const logger = createLogger()
+const serverPromise = startServer()
 
 process.on('unhandledRejection', (error) => {
   logger.info('Unhandled rejection')
   logger.error(error)
-  process.exit(1)
+  process.exitCode = 1
 })
-
-async function startServer() {
-  const server = await createServer()
-  await server.start()
-
-  server.logger.info('Server started successfully')
-  server.logger.info(
-    `Access your backend on http://localhost:${config.get('port')}`
-  )
-}
-
-startServer().catch((error) => {
-  logger.info('Server failed to start :(')
-  logger.error(error)
-})
+process.on('SIGINT', () => serverPromise.then(stopServer))
+process.on('SIGTERM', () => serverPromise.then(stopServer))

@@ -4,7 +4,7 @@ import hapi from '@hapi/hapi'
 import { config } from '~/src/config'
 import { router } from '~/src/api/router'
 import { requestLogger } from '~/src/helpers/logging/request-logger'
-import { mongoPlugin } from '~/src/helpers/mongodb'
+import { mongoDb } from '~/src/helpers/mongodb'
 import { failAction } from '~/src/helpers/fail-action'
 import { secureContext } from '~/src/helpers/secure-context'
 
@@ -45,11 +45,9 @@ async function createServer() {
     await server.register(secureContext)
   }
 
-  // This plugin adds access to mongo by adding `db` to the server and request object.
+  // The mongoDb plugin adds access to mongo by adding `db` to the server and request object.
   // Also adds an instance of mongoClient to just the server object.
-  await server.register({ plugin: mongoPlugin, options: {} })
-
-  await server.register(router)
+  await server.register([mongoDb, router])
 
   return server
 }
