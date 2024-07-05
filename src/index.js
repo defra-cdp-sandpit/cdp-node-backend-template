@@ -1,3 +1,4 @@
+import process from 'node:process'
 import { createLogger } from '~/src/helpers/logging/logger.js'
 import { startServer, stopServer } from '~/src/helpers/server/index.js'
 
