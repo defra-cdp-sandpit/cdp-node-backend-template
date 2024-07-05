@@ -1,6 +1,6 @@
 import tls from 'node:tls'
 
-import { getTrustStoreCerts } from '~/src/helpers/secure-context/get-trust-store-certs'
+import { getTrustStoreCerts } from '~/src/helpers/secure-context/get-trust-store-certs.js'
 
 const secureContext = {
   plugin: {

@@ -1,7 +1,7 @@
 import { URL } from 'node:url'
 import { HttpsProxyAgent } from 'https-proxy-agent'
 
-import { config } from '~/src/config'
+import { config } from '~/src/config/index.js'
 
 const proxyAgent = () => {
   const proxy = config.get('httpsProxy') ?? config.get('httpProxy')

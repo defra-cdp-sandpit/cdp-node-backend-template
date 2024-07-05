@@ -27,7 +27,11 @@ module.exports = {
   plugins: ['prettier', 'jest', 'jest-formatting'],
   rules: {
     'prettier/prettier': 'error',
-    'no-console': 'error'
+    'no-console': 'error',
+
+    // Check for mandatory file extensions
+    // https://nodejs.org/api/esm.html#mandatory-file-extensions
+    'import/extensions': ['error', 'ignorePackages']
   },
   settings: {
     'import/resolver': {
