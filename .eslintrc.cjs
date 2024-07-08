@@ -43,7 +43,7 @@ module.exports = {
 
     // Check for mandatory file extensions
     // https://nodejs.org/api/esm.html#mandatory-file-extensions
-    'import/extensions': ['error', 'ignorePackages'],
+    'import/extensions': ['error', 'always', { ignorePackages: true }],
 
     // Skip rules handled by TypeScript compiler
     'import/default': 'off',
