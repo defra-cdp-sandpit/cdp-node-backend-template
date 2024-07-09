@@ -1,4 +1,4 @@
-import { findAllExampleData } from '~/src/api/example/helpers/find-all-example-data'
+import { findAllExampleData } from '~/src/api/example/helpers/find-all-example-data.js'
 
 const exampleFindAllController = {
   handler: async (request, h) => {

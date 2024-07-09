@@ -1,6 +1,6 @@
 import ecsFormat from '@elastic/ecs-pino-format'
 
-import { config } from '~/src/config'
+import { config } from '~/src/config/index.js'
 
 const loggerOptions = {
   enabled: !config.get('isTest'),

@@ -1,4 +1,4 @@
-import { healthController } from '~/src/api/health/controller'
+import { healthController } from '~/src/api/health/controller.js'
 
 const health = {
   plugin: {

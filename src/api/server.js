@@ -1,12 +1,12 @@
 import path from 'path'
 import hapi from '@hapi/hapi'
 
-import { config } from '~/src/config'
-import { router } from '~/src/api/router'
-import { requestLogger } from '~/src/helpers/logging/request-logger'
-import { mongoDb } from '~/src/helpers/mongodb'
-import { failAction } from '~/src/helpers/fail-action'
-import { secureContext } from '~/src/helpers/secure-context'
+import { config } from '~/src/config/index.js'
+import { router } from '~/src/api/router.js'
+import { requestLogger } from '~/src/helpers/logging/request-logger.js'
+import { mongoDb } from '~/src/helpers/mongodb.js'
+import { failAction } from '~/src/helpers/fail-action.js'
+import { secureContext } from '~/src/helpers/secure-context/index.js'
 
 const isProduction = config.get('isProduction')
 

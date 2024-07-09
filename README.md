@@ -9,6 +9,8 @@ Core delivery platform Node.js Backend Template.
   - [Development](#development)
   - [Production](#production)
   - [Npm scripts](#npm-scripts)
+  - [Formatting](#formatting)
+    - [Windows prettier issue](#windows-prettier-issue)
 - [API endpoints](#api-endpoints)
 - [Calling API endpoints](#calling-api-endpoints)
   - [Postman](#postman)
@@ -73,6 +75,16 @@ To view them in your command line run:
 
 ```bash
 npm run
+```
+
+### Formatting
+
+#### Windows prettier issue
+
+If you are having issues with formatting of line breaks on Windows update your global git config by running:
+
+```bash
+git config --global core.autocrlf false
 ```
 
 ## API endpoints
@@ -151,7 +163,7 @@ docker build --target development --no-cache --tag cdp-node-backend-template:dev
 Run:
 
 ```bash
-docker run -e GITHUB_API_TOKEN -p 3008:3008 cdp-node-backend-template:development
+docker run -e PORT=3001 -p 3001:3001 cdp-node-backend-template:development
 ```
 
 ### Production image
@@ -165,7 +177,7 @@ docker build --no-cache --tag cdp-node-backend-template .
 Run:
 
 ```bash
-docker run -e GITHUB_API_TOKEN -p 3001:3001 cdp-node-backend-template
+docker run -e PORT=3001 -p 3001:3001 cdp-node-backend-template
 ```
 
 ### Docker Compose

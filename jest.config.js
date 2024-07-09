@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   rootDir: '.',
   testEnvironment: 'node',
   verbose: true,

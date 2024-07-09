@@ -1,7 +1,7 @@
 import {
   exampleFindOneController,
   exampleFindAllController
-} from '~/src/api/example/controllers'
+} from '~/src/api/example/controllers/index.js'
 
 const example = {
   plugin: {
