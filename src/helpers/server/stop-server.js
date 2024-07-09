@@ -1,5 +1,6 @@
 import process from 'node:process'
-import { createLogger } from '~/src/helpers/logging/logger'
+
+import { createLogger } from '~/src/helpers/logging/logger.js'
 
 const logger = createLogger()
 
