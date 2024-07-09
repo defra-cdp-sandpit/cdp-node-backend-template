@@ -30,7 +30,7 @@ const mongoDb = {
       server.decorate('server', 'locker', locker)
       server.decorate('request', 'locker', locker)
 
-      server.events.on('closing', async () => {
+      server.events.on('stop', async () => {
         server.logger.info('Closing Mongo client')
         await client.close(true)
       })
