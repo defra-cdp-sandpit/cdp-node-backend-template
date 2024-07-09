@@ -1,5 +1,5 @@
 import Boom from '@hapi/boom'
-import { isNull } from 'lodash'
+import isNull from 'lodash/isNull.js'
 
 import { findExampleData } from '~/src/api/example/helpers/find-example-data.js'
 
