@@ -15,6 +15,7 @@
     "dev:debug": "npm run server:debug",
     "format": "prettier --write \"src/**/*.js\" \"**/*.{js,cjs,md,json,config.js,test.js,graphql.js}\"",
     "format:check": "prettier --check \"src/**/*.js\" \"**/*.{js,cjs,md,json,config.js,test.js,graphql.js}\"",
+    "git:pre-commit-hook": "npm test && npm run lint && npm run format:check",
     "postinstall": "npm run setup:husky",
     "lint": "npm run lint:js",
     "lint:fix": "eslint . --fix",
