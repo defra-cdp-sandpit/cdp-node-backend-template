@@ -2,10 +2,9 @@ import Hapi from '@hapi/hapi'
 import { health } from '~/src/api/health/index.js'
 
 describe('#healthController', () => {
-  let server
+  const server = Hapi.server()
 
   beforeAll(async () => {
-    server = Hapi.server()
     await server.register([health])
     await server.initialize()
   })
@@ -21,5 +20,6 @@ describe('#healthController', () => {
     })
 
     expect(result.statusCode).toBe(200)
+    expect(result.payload).toBe(JSON.stringify({ message: 'success' }))
   })
 })

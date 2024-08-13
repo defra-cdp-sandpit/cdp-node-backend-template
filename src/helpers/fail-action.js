@@ -6,9 +6,6 @@
  * @returns { never }
  */
 export function failAction(request, h, error) {
-  if (error) {
-    request.logger.error(error, error.message)
-    throw error
-  }
-  throw new Error('Server error')
+  request.logger.error(error, error?.message)
+  throw error
 }

@@ -5,7 +5,7 @@ const tenSeconds = 10 * 1000
 
 /**
  * Plug-in to handle cleanly shutting down the service.
- * @satisfies {ServerRegisterPluginObject<*>}
+ * @satisfies { import('@hapi/hapi').ServerRegisterPluginObject<*> }
  */
 const pulse = {
   plugin: hapiPulse,
@@ -16,7 +16,3 @@ const pulse = {
 }
 
 export { pulse }
-
-/**
- * @import { ServerRegisterPluginObject } from '@hapi/hapi'
- */

@@ -1,14 +1,14 @@
 import { findAllExampleData } from '~/src/api/example/helpers/find-all-example-data.js'
 
 /**
- * Example controller: remove as needed
+ * Example controller
  * Finds all entries in a mongodb collection
  * @satisfies {Partial<ServerRoute>}
  */
 const exampleFindAllController = {
   /**
-   * @param { Request & MongoDBPlugin } request
-   * @param { ResponseToolkit } h
+   * @param { import('@hapi/hapi').Request & MongoDBPlugin } request
+   * @param { import('@hapi/hapi').ResponseToolkit } h
    * @returns {Promise<*>}
    */
   handler: async (request, h) => {
@@ -21,6 +21,6 @@ const exampleFindAllController = {
 export { exampleFindAllController }
 
 /**
- * @import { ServerRoute, Request, ResponseToolkit } from '@hapi/hapi'
+ * @import { ServerRoute} from '@hapi/hapi'
  * @import { MongoDBPlugin } from '~/src/helpers/mongodb.js'
  */

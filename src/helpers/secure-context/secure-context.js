@@ -5,7 +5,6 @@ import { getTrustStoreCerts } from '~/src/helpers/secure-context/get-trust-store
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-
 const secureContext = {
   plugin: {
     name: 'secure-context',

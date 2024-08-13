@@ -3,16 +3,26 @@ import { LockManager } from 'mongo-locks'
 
 import { config } from '~/src/config/index.js'
 
+/**
+ * @satisfies { import('@hapi/hapi').ServerRegisterPluginObject<*> }
+ */
 export const mongoDb = {
   plugin: {
     name: 'mongodb',
     version: '1.0.0',
+    /**
+     *
+     * @param { import('@hapi/hapi').Server } server
+     * @param {{mongoUrl: string, databaseName: string, retryWrites: boolean, readPreference: string}} options
+     * @returns {Promise<void>}
+     */
     register: async function (server, options) {
       server.logger.info('Setting up mongodb')
 
       const client = await MongoClient.connect(options.mongoUrl, {
-        retryWrites: false,
-        readPreference: 'secondary',
+        retryWrites: options.retryWrites,
+        readPreference: options.readPreference,
+        // @ts-expect-error TS2339
         ...(server.secureContext && { secureContext: server.secureContext })
       })
 
@@ -24,11 +34,14 @@ export const mongoDb = {
 
       server.logger.info(`mongodb connected to ${databaseName}`)
 
+      // @ts-expect-error TS2769
       server.decorate('server', 'mongoClient', client)
+      // @ts-expect-error TS2769
       server.decorate('server', 'db', db)
-      server.decorate('request', 'db', db)
+      // @ts-expect-error TS2769
       server.decorate('server', 'locker', locker)
-      server.decorate('request', 'locker', locker)
+      server.decorate('request', 'db', () => db, { apply: true })
+      server.decorate('request', 'locker', () => locker, { apply: true })
 
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       server.events.on('stop', async () => {

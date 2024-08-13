@@ -14,5 +14,5 @@
     "types": ["jest"]
   },
   "exclude": [".cache", ".public", ".server", "coverage", "node_modules"],
-  "include": ["**/*.cjs", "**/*.js", ".eslintrc.*", ".prettierrc.*"]
+  "include": ["**/*.cjs", "**/*.js", ".*.cjs", ".*.js"]
 }
