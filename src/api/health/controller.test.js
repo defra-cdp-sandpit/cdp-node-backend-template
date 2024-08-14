@@ -1,17 +1,25 @@
-import { healthController } from '~/src/api/health/controller.js'
+import Hapi from '@hapi/hapi'
+import { health } from '~/src/api/health/index.js'
 
 describe('#healthController', () => {
-  const mockViewHandler = {
-    response: jest.fn().mockReturnThis(),
-    code: jest.fn().mockReturnThis()
-  }
+  const server = Hapi.server()
 
-  test('Should provide expected response', () => {
-    healthController.handler(null, mockViewHandler)
+  beforeAll(async () => {
+    await server.register([health])
+    await server.initialize()
+  })
 
-    expect(mockViewHandler.response).toHaveBeenCalledWith({
-      message: 'success'
+  afterAll(async () => {
+    await server.stop()
+  })
+
+  test('Should provide expected response', async () => {
+    const result = await server.inject({
+      method: 'GET',
+      url: '/health'
     })
-    expect(mockViewHandler.code).toHaveBeenCalledWith(200)
+
+    expect(result.statusCode).toBe(200)
+    expect(result.payload).toBe(JSON.stringify({ message: 'success' }))
   })
 })

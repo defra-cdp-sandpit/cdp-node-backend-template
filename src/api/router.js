@@ -1,6 +1,9 @@
 import { health } from '~/src/api/health/index.js'
 import { example } from '~/src/api/example/index.js'
 
+/**
+ * @satisfies { import('@hapi/hapi').ServerRegisterPluginObject<*> }
+ */
 const router = {
   plugin: {
     name: 'Router',
