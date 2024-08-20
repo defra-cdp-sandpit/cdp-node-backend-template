@@ -5,20 +5,18 @@ import { config } from '~/src/config/index.js'
 /**
  * @satisfies {Options}
  */
-const loggerOptions = {
-  enabled: !config.get('isTest'),
+export const loggerOptions = {
+  enabled: config.get('log.enabled'),
   ignorePaths: ['/health'],
   redact: {
     paths: ['req.headers.authorization', 'req.headers.cookie', 'res.headers'],
     remove: true
   },
-  level: config.get('logLevel'),
-  ...(config.get('isDevelopment')
-    ? { transport: { target: 'pino-pretty' } }
-    : /** @type {Omit<LoggerOptions, 'mixin' | 'transport'>} */ (ecsFormat()))
+  level: config.get('log.level'),
+  ...(config.get('log.format') === 'ecs'
+    ? /** @type {Omit<LoggerOptions, 'mixin' | 'transport'>} */ (ecsFormat())
+    : { transport: { target: 'pino-pretty' } })
 }
-
-export { loggerOptions }
 
 /**
  * @import { Options } from 'hapi-pino'
