@@ -103,7 +103,15 @@ module.exports = {
         sourceType: 'commonjs'
       },
       rules: {
-        '@typescript-eslint/no-var-requires': 'off'
+        '@typescript-eslint/no-var-requires': 'off',
+
+        // Allow require devDependencies
+        'n/no-unpublished-require': [
+          'error',
+          {
+            allowModules: []
+          }
+        ]
       }
     },
     {
@@ -127,7 +135,15 @@ module.exports = {
       rules: {
         // Allow Jest to assert on mocked unbound methods
         '@typescript-eslint/unbound-method': 'off',
-        'jest/unbound-method': 'error'
+        'jest/unbound-method': 'error',
+
+        // Allow import devDependencies
+        'n/no-unpublished-import': [
+          'error',
+          {
+            allowModules: []
+          }
+        ]
       }
     }
   ],
