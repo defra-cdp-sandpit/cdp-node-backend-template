@@ -3,6 +3,14 @@ import { ecsFormat } from '@elastic/ecs-pino-format'
 import { config } from '~/src/config/index.js'
 
 /**
+ * @type {{ecs: Omit<LoggerOptions, "mixin"|"transport">, "pino-pretty": {transport: {target: string}}}}
+ */
+const formatters = {
+  ecs: ecsFormat(),
+  'pino-pretty': { transport: { target: 'pino-pretty' } }
+}
+
+/**
  * @satisfies {Options}
  */
 export const loggerOptions = {
@@ -13,9 +21,7 @@ export const loggerOptions = {
     remove: true
   },
   level: config.get('log.level'),
-  ...(config.get('log.format') === 'ecs'
-    ? /** @type {Omit<LoggerOptions, 'mixin' | 'transport'>} */ (ecsFormat())
-    : { transport: { target: 'pino-pretty' } })
+  ...formatters[config.get('log.format')]
 }
 
 /**

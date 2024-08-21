@@ -5,7 +5,8 @@ import { fileURLToPath } from 'node:url'
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const isProduction = process.env.NODE_ENV === 'production'
-
+const isDev = process.env.NODE_ENV === 'development'
+const isTest = process.env.NODE_ENV === 'test'
 const config = convict({
   env: {
     doc: 'The application environment.',
@@ -32,23 +33,23 @@ const config = convict({
   isProduction: {
     doc: 'If this application running in the production environment',
     format: Boolean,
-    default: process.env.NODE_ENV === 'production'
+    default: isProduction
   },
   isDevelopment: {
     doc: 'If this application running in the development environment',
     format: Boolean,
-    default: process.env.NODE_ENV !== 'production'
+    default: isDev
   },
   isTest: {
     doc: 'If this application running in the test environment',
     format: Boolean,
-    default: process.env.NODE_ENV === 'test'
+    default: isTest
   },
   log: {
     enabled: {
       doc: 'Is logging enabled',
       format: Boolean,
-      default: process.env.NODE_ENV !== 'test',
+      default: !isTest,
       env: 'LOG_ENABLED'
     },
     level: {

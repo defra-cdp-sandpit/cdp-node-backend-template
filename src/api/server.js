@@ -38,6 +38,7 @@ async function createServer() {
     }
   })
 
+  // Hapi Plugins:
   // requestLogger - automatically logs incoming requests
   // secureContext - loads CA certificates from environment config
   // pulse         - provides shutdown handlers
