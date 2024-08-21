@@ -28,7 +28,7 @@ jobs:
           cache: npm
 
       # Ensure tests pass. Add more checks if required
-      - run: npm ci
+      - run: npm install
       - run: npm test
 
       - name: Publish Hot Fix
