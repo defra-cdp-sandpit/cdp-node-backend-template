@@ -30,9 +30,8 @@ const secureContext = {
           return secureContext
         }
 
-        server.decorate('server', 'secureContext', tls.createSecureContext, {
-          apply: true
-        })
+        // @ts-expect-error TS2769
+        server.decorate('server', 'secureContext', tls.createSecureContext())
       } else {
         server.logger.info('Custom secure context is disabled')
       }
