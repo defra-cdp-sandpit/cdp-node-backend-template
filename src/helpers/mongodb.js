@@ -4,6 +4,10 @@ import { LockManager } from 'mongo-locks'
 import { config } from '~/src/config/index.js'
 
 /**
+ * @typedef {import('mongodb').ReadPreferenceLike} ReadPreferenceLike
+ */
+
+/**
  * @satisfies { import('@hapi/hapi').ServerRegisterPluginObject<*> }
  */
 export const mongoDb = {
@@ -11,19 +15,18 @@ export const mongoDb = {
     name: 'mongodb',
     version: '1.0.0',
     /**
-     *
      * @param { import('@hapi/hapi').Server } server
-     * @param {{mongoUrl: string, databaseName: string, retryWrites: boolean, readPreference: string}} options
+     * @param {{mongoUrl: string, databaseName: string, retryWrites: boolean, readPreference: ReadPreferenceLike}} options
      * @returns {Promise<void>}
      */
     register: async function (server, options) {
       server.logger.info('Setting up mongodb')
 
+      const secureContext = server.getSecureContext()
       const client = await MongoClient.connect(options.mongoUrl, {
         retryWrites: options.retryWrites,
         readPreference: options.readPreference,
-        // @ts-expect-error TS2339
-        ...(server.secureContext && { secureContext: server.secureContext })
+        ...(secureContext && { secureContext })
       })
 
       const databaseName = options.databaseName
@@ -34,19 +37,17 @@ export const mongoDb = {
 
       server.logger.info(`mongodb connected to ${databaseName}`)
 
-      // @ts-expect-error TS2769
-      server.decorate('server', 'mongoClient', client)
-      // @ts-expect-error TS2769
-      server.decorate('server', 'db', db)
-      // @ts-expect-error TS2769
-      server.decorate('server', 'locker', locker)
-      server.decorate('request', 'db', () => db, { apply: true })
-      server.decorate('request', 'locker', () => locker, { apply: true })
+      server.decorate('server', 'mongoClient', () => client)
+      server.decorate('server', 'db', () => db)
+      server.decorate('request', 'db', () => db)
+      server.decorate('server', 'locker', () => locker)
+      server.decorate('request', 'locker', () => locker)
 
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
-      server.events.on('stop', async () => {
+      server.events.on('stop', () => {
         server.logger.info('Closing Mongo client')
-        await client.close(true)
+        client.close(true).catch((err) => {
+          server.logger.error(`Error closing Mongo client: ${err}`)
+        })
       })
     }
   },

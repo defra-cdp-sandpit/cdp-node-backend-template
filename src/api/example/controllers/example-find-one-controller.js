@@ -14,7 +14,7 @@ const exampleFindOneController = {
    * @returns {Promise<*>}
    */
   handler: async (request, h) => {
-    const entity = await findExampleData(request.db, request.params.exampleId)
+    const entity = await findExampleData(request.db(), request.params.exampleId)
     if (isNull(entity)) {
       return Boom.boomify(Boom.notFound())
     }

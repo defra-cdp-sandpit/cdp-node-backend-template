@@ -12,7 +12,7 @@ const exampleFindAllController = {
    * @returns {Promise<*>}
    */
   handler: async (request, h) => {
-    const entities = await findAllExampleData(request.db)
+    const entities = await findAllExampleData(request.db())
 
     return h.response({ message: 'success', entities }).code(200)
   }
