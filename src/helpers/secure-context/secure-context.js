@@ -28,6 +28,8 @@ const secureContext = {
             secureContext.context.addCACert(cert)
           })
 
+          server.logger.info('Custom secure context enabled')
+
           return secureContext
         }
       }
