@@ -19,7 +19,7 @@ module.exports = {
       env: {
         browser: false
       },
-      files: ['**/*.{cjs,js}'],
+      files: ['**/*.{cjs,js,ts}'],
       parser: '@typescript-eslint/parser',
       parserOptions: {
         ecmaVersion: 'latest',
