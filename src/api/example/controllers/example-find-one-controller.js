@@ -9,23 +9,23 @@ import { findExampleData } from '~/src/api/example/helpers/find-example-data.js'
  */
 const exampleFindOneController = {
   /**
-   * @param { import('@hapi/hapi').Request & MongoDBPlugin } request
-   * @param { import('@hapi/hapi').ResponseToolkit } h
+   * @param { Request & MongoDBPlugin } request
+   * @param { ResponseToolkit } h
    * @returns {Promise<*>}
    */
   handler: async (request, h) => {
-    const entity = await findExampleData(request.db, request.params.exampleId)
-    if (isNull(entity)) {
+    const example = await findExampleData(request.db, request.params.id)
+    if (isNull(example)) {
       return Boom.boomify(Boom.notFound())
     }
 
-    return h.response({ message: 'success', entity }).code(200)
+    return h.response({ message: 'success', example }).code(200)
   }
 }
 
 export { exampleFindOneController }
 
 /**
- * @import { ServerRoute} from '@hapi/hapi'
+ * @import { ServerRoute, Request, ResponseToolkit } from '@hapi/hapi'
  * @import { MongoDBPlugin } from '~/src/helpers/mongodb.js'
  */

@@ -7,7 +7,7 @@ export default {
   verbose: true,
   resetModules: true,
   clearMocks: true,
-  silent: true,
+  silent: false,
   testMatch: ['**/src/**/*.test.js'],
   reporters: ['default', ['github-actions', { silent: false }], 'summary'],
   collectCoverageFrom: ['src/**/*.js'],
@@ -16,7 +16,11 @@ export default {
     '<rootDir>/.server',
     '<rootDir>/src/__fixtures__'
   ],
-  coverageDirectory: '<rootDir>/coverage'
+  coverageDirectory: '<rootDir>/coverage',
+  transform: {
+    '^.+\\.js$': ['babel-jest', { rootMode: 'upward' }]
+  },
+  transformIgnorePatterns: []
 }
 
 /**

@@ -1,0 +1,89 @@
+version: "3.4"
+
+services:
+
+  mongodb:
+    image: mongo:6.0.13
+    container_name: cdp-mongodb
+    command: [
+      "--tlsMode", "requireTLS",
+      "--tlsCertificateKeyFile", "etc/ssl/mongodb.pem"
+    ]
+    networks:
+      - cdp-network
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./mongo/ssl:/etc/ssl:ro
+    restart: always
+
+
+  cdp-node-backend-template:
+    build: ../../
+    container_name: cdp-node-backend-template
+    networks:
+      - cdp-network
+    ports:
+      - '3001:3001'
+    env_file:
+      - ./cdp-node-backend-template.env
+    environment:
+      - PORT=3001
+    depends_on:
+      mongodb:
+        condition: service_started
+
+volumes:
+  cdp-template-data:
+
+networks:
+  cdp-network:
+    driver: bridge
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

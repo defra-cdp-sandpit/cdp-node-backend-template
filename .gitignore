@@ -8,3 +8,7 @@ npm-debug.log
 coverage
 .cache
 .eslintcache
+
+**/mongodb.pem
+**/mongodb-cert.crt
+**/mongodb-cert.key

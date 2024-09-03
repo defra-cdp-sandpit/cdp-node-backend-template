@@ -7,20 +7,20 @@ import { findAllExampleData } from '~/src/api/example/helpers/find-all-example-d
  */
 const exampleFindAllController = {
   /**
-   * @param { import('@hapi/hapi').Request & MongoDBPlugin } request
-   * @param { import('@hapi/hapi').ResponseToolkit } h
+   * @param { Request & MongoDBPlugin } request
+   * @param { ResponseToolkit } h
    * @returns {Promise<*>}
    */
   handler: async (request, h) => {
-    const entities = await findAllExampleData(request.db)
+    const examples = await findAllExampleData(request.db)
 
-    return h.response({ message: 'success', entities }).code(200)
+    return h.response({ message: 'success', examples }).code(200)
   }
 }
 
 export { exampleFindAllController }
 
 /**
- * @import { ServerRoute} from '@hapi/hapi'
+ * @import { ServerRoute, Request, ResponseToolkit } from '@hapi/hapi'
  * @import { MongoDBPlugin } from '~/src/helpers/mongodb.js'
  */

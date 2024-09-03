@@ -89,11 +89,11 @@ git config --global core.autocrlf false
 
 ## API endpoints
 
-| Endpoint             | Description                    |
-| :------------------- | :----------------------------- |
-| `GET: /health`       | Health                         |
-| `GET: /example    `  | Example API (remove as needed) |
-| `GET: /example/<id>` | Example API (remove as needed) |
+| Endpoint                     | Description                    |
+| :--------------------------- | :----------------------------- |
+| `GET: /health`               | Health                         |
+| `GET: /examples`             | Example API (remove as needed) |
+| `GET: /examples/<exampleId>` | Example API (remove as needed) |
 
 ## Calling API endpoints
 
@@ -192,6 +192,23 @@ A local environment with:
 
 ```bash
 docker compose up --build -d
+```
+
+### Integration tests
+
+```bash
+cd integration-tests
+. setup.sh
+docker compose down -v
+docker compose up --build --force-recreate
+```
+
+```bash
+mongosh --tls --host localhost:27017 --tlsCAFile mongo/ssl/mongodb-cert.pem
+```
+
+```bash
+docker exec -it cdp-mongodb /bin/bash
 ```
 
 ## Licence

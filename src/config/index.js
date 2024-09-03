@@ -55,13 +55,13 @@ const config = convict({
     level: {
       doc: 'Logging level',
       format: ['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'silent'],
-      default: 'info',
+      default: 'debug',
       env: 'LOG_LEVEL'
     },
     format: {
       doc: 'Format to output logs in.',
       format: ['ecs', 'pino-pretty'],
-      default: isProduction ? 'ecs' : 'pino-pretty',
+      default: 'pino-pretty',
       env: 'LOG_FORMAT'
     }
   },

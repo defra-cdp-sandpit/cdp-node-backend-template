@@ -15,7 +15,7 @@ const formatters = {
  */
 export const loggerOptions = {
   enabled: config.get('log.enabled'),
-  ignorePaths: ['/health'],
+  // ignorePaths: ['/health'], // TODO do not commit this
   redact: {
     paths: ['req.headers.authorization', 'req.headers.cookie', 'res.headers'],
     remove: true

@@ -5,14 +5,29 @@
     "module": "NodeNext",
     "noEmit": true,
     "paths": {
-      "~/*": ["./*"]
+      "~/*": [
+        "./*"
+      ]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
-    "types": ["jest"]
+    "types": [
+      "jest"
+    ]
   },
-  "exclude": [".cache", ".public", ".server", "coverage", "node_modules"],
-  "include": ["**/*.cjs", "**/*.js", ".*.cjs", ".*.js"]
+  "exclude": [
+    ".cache",
+    ".public",
+    ".server",
+    "coverage",
+    "node_modules"
+  ],
+  "include": [
+    "**/*.cjs",
+    "**/*.js",
+    ".*.cjs",
+    ".*.js"
+  ]
 }

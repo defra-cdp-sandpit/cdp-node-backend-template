@@ -1,6 +1,8 @@
 import {
+  exampleCreateController,
   exampleFindOneController,
-  exampleFindAllController
+  exampleFindAllController,
+  exampleDeleteController
 } from '~/src/api/example/controllers/index.js'
 
 /**
@@ -13,12 +15,22 @@ const example = {
       server.route([
         {
           method: 'GET',
-          path: '/example',
+          path: '/examples',
           ...exampleFindAllController
         },
         {
+          method: 'POST',
+          path: '/examples',
+          ...exampleCreateController
+        },
+        {
+          method: 'DELETE',
+          path: '/examples/{id}',
+          ...exampleDeleteController
+        },
+        {
           method: 'GET',
-          path: '/example/{exampleId}',
+          path: '/examples/{id}',
           ...exampleFindOneController
         }
       ])
