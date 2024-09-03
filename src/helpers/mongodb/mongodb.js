@@ -1,7 +1,7 @@
-import { MongoClient } from 'mongodb'
 import { LockManager } from 'mongo-locks'
 
-import { config } from '~/src/config/index.js'
+import mongo from '~/src/helpers/mongodb/get-mongo.js'
+import { mongoOptions } from '~/src/helpers/mongodb/mongo-options.js'
 
 /**
  * @satisfies { import('@hapi/hapi').ServerRegisterPluginObject<*> }
@@ -19,15 +19,9 @@ export const mongoDb = {
     register: async function (server, options) {
       server.logger.info('Setting up mongodb')
 
-      const client = await MongoClient.connect(options.mongoUrl, {
-        retryWrites: options.retryWrites,
-        readPreference: options.readPreference,
-        // @ts-expect-error TS2339
-        ...(server.secureContext && { secureContext: server.secureContext })
-      })
-
+      const db = await mongo.getDb()
+      const client = await mongo.getClient()
       const databaseName = options.databaseName
-      const db = client.db(databaseName)
       const locker = new LockManager(db.collection('mongo-locks'))
 
       await createIndexes(db)
@@ -40,8 +34,10 @@ export const mongoDb = {
       server.decorate('server', 'db', db)
       // @ts-expect-error TS2769
       server.decorate('server', 'locker', locker)
-      server.decorate('request', 'db', () => db, { apply: true })
-      server.decorate('request', 'locker', () => locker, { apply: true })
+      // @ts-expect-error TS2769
+      server.decorate('request', 'db', db)
+      // @ts-expect-error TS2769
+      server.decorate('request', 'locker', locker)
 
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       server.events.on('stop', async () => {
@@ -51,10 +47,7 @@ export const mongoDb = {
     }
   },
   options: {
-    mongoUrl: config.get('mongoUri'),
-    databaseName: config.get('mongoDatabase'),
-    retryWrites: false,
-    readPreference: 'secondary'
+    databaseName: mongoOptions.databaseName
   }
 }
 
