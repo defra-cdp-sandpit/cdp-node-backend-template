@@ -7,6 +7,7 @@ Core delivery platform Node.js Backend Template.
 - [Local development](#local-development)
   - [Setup](#setup)
   - [Development](#development)
+  - [Testing](#testing)
   - [Production](#production)
   - [Npm scripts](#npm-scripts)
   - [Formatting](#formatting)
@@ -14,9 +15,13 @@ Core delivery platform Node.js Backend Template.
 - [API endpoints](#api-endpoints)
 - [Calling API endpoints](#calling-api-endpoints)
   - [Postman](#postman)
+- [Development helpers](#development-helpers)
+  - [MongoDB Locks](#mongodb-locks)
 - [Docker](#docker)
-  - [Development Image](#development-image)
-  - [Production Image](#production-image)
+  - [Development image](#development-image)
+  - [Production image](#production-image)
+  - [Docker Compose](#docker-compose)
+  - [SonarCloud](#sonarcloud)
 - [Licence](#licence)
   - [About the licence](#about-the-licence)
 
@@ -99,7 +104,8 @@ git config --global core.autocrlf false
 
 ### Postman
 
-A [Postman](https://www.postman.com/) collection and environment are available for making calls to the cdp-node-backend-template API.
+A [Postman](https://www.postman.com/) collection and environment are available for making calls to the
+cdp-node-backend-template API.
 Simply import the collection and environment into Postman.
 
 - [CDP Node Backend Template Postman Collection](postman/cdp-node-backend-template.postman_collection.json)
@@ -193,6 +199,10 @@ A local environment with:
 ```bash
 docker compose up --build -d
 ```
+
+### SonarCloud
+
+Instructions for setting up SonarCloud can be found in [sonar-project.properties](./sonar-project.properties)
 
 ## Licence
 
