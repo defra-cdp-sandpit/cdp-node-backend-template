@@ -22,6 +22,7 @@ Core delivery platform Node.js Backend Template.
   - [Development image](#development-image)
   - [Production image](#production-image)
   - [Docker Compose](#docker-compose)
+  - [Dependabot](#dependabot)
   - [SonarCloud](#sonarcloud)
 - [Licence](#licence)
   - [About the licence](#about-the-licence)
@@ -211,6 +212,11 @@ A local environment with:
 ```bash
 docker compose up --build -d
 ```
+
+### Dependabot
+
+We have added an example dependabot configuration file to the repository. You can enable it by renaming
+the [.github/example.dependabot.yml](.github/example.dependabot.yml) to `.github/dependabot.yml`
 
 ### SonarCloud
 
