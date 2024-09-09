@@ -44,6 +44,11 @@ updates:
         patterns:
           - '@types/*'
 
+    ignore:
+      - dependency-name: 'eslint-*'
+      - dependency-name: 'eslint'
+      - dependency-name: '@typescript-eslint/*'
+
     # Schedule run every Monday, local time
     schedule:
       interval: weekly
