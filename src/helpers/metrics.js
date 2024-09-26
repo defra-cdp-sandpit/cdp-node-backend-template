@@ -10,17 +10,25 @@ import { createLogger } from '~/src/helpers/logging/logger.js'
  * @param {string} metricName
  * @param {number} value
  */
-const counter = async (metricName, value = 1) => {
-  const logger = createLogger()
-  if (!config.get('enableMetrics')) return
+const metricsCounter = async (metricName, value = 1) => {
+  const isMetricsEnabled = config.get('isMetricsEnabled')
+
+  if (!isMetricsEnabled) {
+    return
+  }
 
   try {
-    const metrics = createMetricsLogger()
-    metrics.putMetric(metricName, value, Unit.Count, StorageResolution.Standard)
-    await metrics.flush()
-  } catch (e) {
-    logger.warn(e)
+    const metricsLogger = createMetricsLogger()
+    metricsLogger.putMetric(
+      metricName,
+      value,
+      Unit.Count,
+      StorageResolution.Standard
+    )
+    await metricsLogger.flush()
+  } catch (error) {
+    createLogger().error(error, error.message)
   }
 }
 
-export { counter }
+export { metricsCounter }
