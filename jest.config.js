@@ -18,7 +18,10 @@ export default {
     '<rootDir>/src/api/example',
     '<rootDir>/src/api/router.js',
     '<rootDir>/src/api/server.js',
-    '<rootDir>/src/index.js'
+    '<rootDir>/src/helpers/start-server.js',
+    '<rootDir>/src/helpers/pulse.js',
+    '<rootDir>/src/index.js',
+    '<rootDir>/src/config/'
   ],
   coverageDirectory: '<rootDir>/coverage'
 }

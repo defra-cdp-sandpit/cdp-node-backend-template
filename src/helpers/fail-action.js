@@ -1,3 +1,7 @@
+import { createLogger } from '~/src/helpers/logging/logger.js'
+
+const logger = createLogger()
+
 /**
  *
  * @param { import('@hapi/hapi').Request } request
@@ -6,6 +10,6 @@
  * @returns { never }
  */
 export function failAction(request, h, error) {
-  request.logger.error(error, error?.message)
+  logger.error(error, error?.message)
   throw error
 }
