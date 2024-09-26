@@ -4,14 +4,15 @@ import { config } from '~/src/config/index.js'
 import { getTrustStoreCerts } from '~/src/helpers/secure-context/get-trust-store-certs.js'
 
 /**
+ * Creates a new secure context loaded from Base64 encoded certs
  * @satisfies {ServerRegisterPluginObject<void>}
  */
-const secureContext = {
+export const secureContext = {
   plugin: {
     name: 'secure-context',
     register(server) {
-      if (config.get('enableSecureContext')) {
-        const originalCreateSecureContext = tls.createSecureContext
+      if (config.get('isSecureContextEnabled')) {
+        const originalTlsCreateSecureContext = tls.createSecureContext
 
         tls.createSecureContext = function (options = {}) {
           const trustStoreCerts = getTrustStoreCerts(process.env)
@@ -20,14 +21,13 @@ const secureContext = {
             server.logger.info('Could not find any TRUSTSTORE_ certificates')
           }
 
-          const secureContext = originalCreateSecureContext(options)
+          const tlsSecureContext = originalTlsCreateSecureContext(options)
 
           trustStoreCerts.forEach((cert) => {
-            // eslint-disable-next-line -- Node.js API not documented
-            secureContext.context.addCACert(cert)
+            tlsSecureContext.context.addCACert(cert)
           })
 
-          return secureContext
+          return tlsSecureContext
         }
 
         // @ts-expect-error TS2769
@@ -38,8 +38,6 @@ const secureContext = {
     }
   }
 }
-
-export { secureContext }
 
 /**
  * @import { ServerRegisterPluginObject } from '@hapi/hapi'
