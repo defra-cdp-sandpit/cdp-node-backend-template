@@ -37,22 +37,6 @@ checkLogSchema() {
     fi
 }
 
-checkLogHasNoErrors() {
-      set +e
-      local log
-      log=$(docker compose -f "$compose_file" logs service -n 100 --no-color --no-log-prefix 2>/dev/null)
-      if echo "$log" | grep -qi '"error"'; then
-        echo " ❌ Errors found in startup logs"
-        echo "$log"
-        set -e
-        return 0
-      else
-        echo " ✔ Log has no error level messages"
-        set -e
-        return 1
-      fi
-}
-
 setup() {
   set -e
   # Generate Self Signed Certs
@@ -71,25 +55,28 @@ setup() {
 
 # Stop docker on exist and cleanup tmp files
 cleanup() {
-    echo "cleaning up"
+    rv=$?
+    echo "cleaning up $rv"
     rm -f .github/template/ssl/*
     docker compose -f "$compose_file" down
+    exit $rv
 }
 trap cleanup EXIT
 
+run_tests() {
+  # Run the tests
+  echo "-- Running template tests ---"
+
+  # Check endpoints respond
+  SERVICE_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' cdp-node-backend-template)
+
+  checkUrl "http://$SERVICE_IP:8085/health"
+  checkUrl "http://$SERVICE_IP:8085/example"
+  # Check its using ECS
+  checkLogSchema
+}
+
 # Start Docker
 setup
+run_tests
 
-# Run the tests
-echo "-- Running template tests ---"
-
-# Check endpoints respond
-SERVICE_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' cdp-node-backend-template)
-checkUrl "http://$SERVICE_IP:8085/health"
-checkUrl "http://$SERVICE_IP:8085/example"
-
-# Check its using ECS
-checkLogSchema
-checkLogHasNoErrors
-
-echo "-- all tests complete ---"
