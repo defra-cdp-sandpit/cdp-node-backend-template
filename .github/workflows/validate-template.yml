@@ -13,7 +13,7 @@ on:
 
 jobs:
   pr-validator:
-    name: Run Pull Request Checks
+    name: Run Pull Request Template Checks
     runs-on: ubuntu-latest
     steps:
       - name: Check out code

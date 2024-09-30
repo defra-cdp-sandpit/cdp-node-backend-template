@@ -68,10 +68,9 @@ run_tests() {
   echo "-- Running template tests ---"
 
   # Check endpoints respond
-  SERVICE_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' cdp-node-backend-template)
+  checkUrl "http://localhost:8085/health"
+  checkUrl "http://localhost:8085/example"
 
-  checkUrl "http://$SERVICE_IP:8085/health"
-  checkUrl "http://$SERVICE_IP:8085/example"
   # Check its using ECS
   checkLogSchema
 }
