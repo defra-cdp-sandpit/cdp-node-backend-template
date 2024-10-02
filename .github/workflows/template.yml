@@ -18,23 +18,16 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
-      - name: Split string and set environment variable
-        run: echo "REPOSITORY_NAME=$(echo '${{ github.repository }}' | awk -F'/' '{print $NF}')" >> $GITHUB_ENV
-      - name: Find and replace
+      - name: Apply template
         run: |
-          find . -name .git -prune -o -name .github -prune -o -type f -exec sed -i 's/cdp-node-backend-template/${{ env.REPOSITORY_NAME }}/g' {} \;
-          find . -name .git -prune -o -name .github -prune -o -type f -exec sed -i 's/CDP Node.js Backend Template/${{ env.REPOSITORY_NAME }}/g' {} \;
-          contents="$(jq '.version = "0.0.0"' package.json)"
-          echo -E "${contents}" > package.json
-          contents="$(jq '.version = "0.0.0"' package-lock.json)"
-          echo -E "${contents}" > package-lock.json
-          contents="$(jq '.packages[""].version = "0.0.0"' package-lock.json)"
-          echo -E "${contents}" > package-lock.json
-          rm .github/workflows/template.yml
+          .github/template/apply.sh ${{ github.repository }}
+      - name: Cleanup
+        run: |
+          .github/template/cleanup.sh
       - name: Commit and push changes
         run: |
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'github-actions@github.com'
           git add -A
-          git commit -m "Applying template changes"
+          git commit -m "Applying template"
           git push origin main
