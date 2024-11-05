@@ -8,13 +8,6 @@ const isProduction = process.env.NODE_ENV === 'production'
 const isDev = process.env.NODE_ENV === 'development'
 const isTest = process.env.NODE_ENV === 'test'
 const config = convict({
-  containerVersion: {
-    doc: 'The container version, this variable is injected into your docker container in CDP environments',
-    format: String,
-    nullable: true,
-    default: null,
-    env: 'CONTAINER_VERSION'
-  },
   env: {
     doc: 'The application environment.',
     format: ['production', 'development', 'test'],
@@ -70,13 +63,6 @@ const config = convict({
       format: ['ecs', 'pino-pretty'],
       default: isProduction ? 'ecs' : 'pino-pretty',
       env: 'LOG_FORMAT'
-    },
-    redact: {
-      doc: 'Log paths to redact',
-      format: Array,
-      default: isProduction
-        ? ['req.headers.authorization', 'req.headers.cookie', 'res.headers']
-        : ['req', 'res', 'container_version', 'responseTime']
     }
   },
   mongoUri: {
