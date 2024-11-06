@@ -14,7 +14,7 @@ const formatters = {
     base: {
       service: {
         name: serviceName,
-        type: 'node',
+        type: 'nodeJs',
         version: serviceVersion
       }
     }
