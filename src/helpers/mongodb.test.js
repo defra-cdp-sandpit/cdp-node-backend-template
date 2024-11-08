@@ -1,52 +1,52 @@
-import { mongoDb } from '~/src/helpers/mongodb.js'
-import { Server } from '@hapi/hapi'
-import { requestLogger } from '~/src/helpers/logging/request-logger.js'
-import { MongoClient } from 'mongodb'
+import { Db, MongoClient } from 'mongodb'
+import { LockManager } from 'mongo-locks'
 
-jest.mock('mongodb', () => {
-  return {
-    MongoClient: {
-      connect: jest.fn().mockResolvedValue({
-        db: jest.fn().mockReturnValue({
-          collection: jest.fn().mockReturnValue({
-            createIndex: jest.fn().mockResolvedValue({})
-          })
-        }),
-        close: jest.fn()
-      })
-    }
-  }
-})
+import { createServer } from '~/src/api/server.js'
 
-describe('mongoDb plugin', () => {
+describe('#mongoDb', () => {
+  /** @type {Server} */
   let server
 
-  beforeEach(async () => {
-    server = new Server()
-    await server.register(requestLogger)
-    await server.register({
-      plugin: mongoDb.plugin,
-      options: {
-        mongoUrl: 'mongodb://localhost:27017',
-        databaseName: 'testDatabase',
-        retryWrites: false,
-        readPreference: 'secondary'
-      }
+  describe('Set up', () => {
+    beforeAll(async () => {
+      server = await createServer()
+      await server.initialize()
+    })
+
+    afterAll(async () => {
+      await server.stop({ timeout: 0 })
+    })
+
+    test('Server should have expected MongoDb decorators', () => {
+      expect(server.db).toBeInstanceOf(Db)
+      expect(server.mongoClient).toBeInstanceOf(MongoClient)
+      expect(server.locker).toBeInstanceOf(LockManager)
+    })
+
+    test('MongoDb should have expected database name', () => {
+      expect(server.db.databaseName).toBe('cdp-node-backend-template')
+    })
+
+    test('MongoDb should have expected namespace', () => {
+      expect(server.db.namespace).toBe('cdp-node-backend-template')
     })
   })
 
-  afterEach(async () => {
-    await server.stop()
-  })
+  describe('Shut down', () => {
+    beforeAll(async () => {
+      server = await createServer()
+      await server.initialize()
+    })
 
-  test('should connect to MongoDB and decorate server', () => {
-    expect(server.db).toBeDefined()
-    expect(server.locker).toBeDefined()
-    expect(MongoClient.connect).toHaveBeenCalled()
-  })
+    test('Should close Mongo client on server stop', async () => {
+      const closeSpy = jest.spyOn(server.mongoClient, 'close')
+      await server.stop({ timeout: 0 })
 
-  test('should close Mongo client on server stop', async () => {
-    await server.stop()
-    expect(server.mongoClient.close).toHaveBeenCalledWith(true)
+      expect(closeSpy).toHaveBeenCalledWith(true)
+    })
   })
 })
+
+/**
+ * @import { Server } from '@hapi/hapi'
+ */

@@ -1,8 +1,8 @@
 /**
  *
- * @param {import('mongo-locks').LockManager} locker
+ * @param {LockManager} locker
  * @param {string} resource
- * @param {import('pino').Logger|undefined} logger
+ * @param {Logger|undefined} logger
  * @returns {Promise<*>}
  */
 async function acquireLock(locker, resource, logger) {
@@ -18,7 +18,7 @@ async function acquireLock(locker, resource, logger) {
 
 /**
  *
- * @param {import('mongo-locks').LockManager} locker
+ * @param {LockManager} locker
  * @param {string} resource
  * @returns {Promise<*>}
  */
@@ -31,3 +31,7 @@ async function requireLock(locker, resource) {
 }
 
 export { acquireLock, requireLock }
+/**
+ * @import { LockManager } from 'mongo-locks'
+ * @import { Logger } from 'pino'
+ */

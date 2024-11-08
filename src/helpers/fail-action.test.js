@@ -1,8 +1,13 @@
 import { failAction } from '~/src/helpers/fail-action.js'
 
 describe('#fail-action', () => {
-  test('should throw an error', () => {
-    // @ts-expect-error TS2345
-    expect(() => failAction({}, null, new Error('test'))).toThrow('test')
+  test('Should throw expected error', () => {
+    const mockRequest = {}
+    const mockToolkit = {}
+    const mockError = Error('Something terrible has happened!')
+
+    expect(() => failAction(mockRequest, mockToolkit, mockError)).toThrow(
+      'Something terrible has happened!'
+    )
   })
 })

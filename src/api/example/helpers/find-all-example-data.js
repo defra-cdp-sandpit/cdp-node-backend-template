@@ -1,15 +1,19 @@
 /**
  * Database helper. Returns all objects stored in the example-data collection in mongodb.
  * See src/server/helpers/mongodb.js for an example of how the indexes are created for this collection.
- * @param { import('mongodb').Db } db
- * @returns {Promise<*[]>}
+ * @param { Db } db
+ * @returns {Promise<WithId<Document>[]>}
  */
-async function findAllExampleData(db) {
+function findAllExampleData(db) {
   const cursor = db
     .collection('example-data')
     .find({}, { projection: { _id: 0 } })
 
-  return await cursor.toArray()
+  return cursor.toArray()
 }
 
 export { findAllExampleData }
+
+/**
+ * @import { Db, WithId, Document } from 'mongodb'
+ */
