@@ -1,4 +1,3 @@
-// lockFunctions.test.js
 import { acquireLock, requireLock } from '~/src/helpers/mongo-lock.js'
 
 describe('Lock Functions', () => {

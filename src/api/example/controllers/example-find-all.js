@@ -1,4 +1,5 @@
 import { findAllExampleData } from '~/src/api/example/helpers/find-all-example-data.js'
+import { statusCodes } from '~/src/constants/status-codes.js'
 
 /**
  * Example controller
@@ -6,21 +7,15 @@ import { findAllExampleData } from '~/src/api/example/helpers/find-all-example-d
  * @satisfies {Partial<ServerRoute>}
  */
 const exampleFindAllController = {
-  /**
-   * @param { import('@hapi/hapi').Request & MongoDBPlugin } request
-   * @param { import('@hapi/hapi').ResponseToolkit } h
-   * @returns {Promise<*>}
-   */
   handler: async (request, h) => {
     const entities = await findAllExampleData(request.db)
 
-    return h.response({ message: 'success', entities }).code(200)
+    return h.response({ message: 'success', entities }).code(statusCodes.ok)
   }
 }
 
 export { exampleFindAllController }
 
 /**
- * @import { ServerRoute} from '@hapi/hapi'
- * @import { MongoDBPlugin } from '~/src/helpers/mongodb.js'
+ * @import { ServerRoute } from '@hapi/hapi'
  */

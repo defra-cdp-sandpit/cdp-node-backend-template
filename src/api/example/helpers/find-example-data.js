@@ -1,14 +1,18 @@
 /**
  * Finds and returns a single example record from mongodb.
  * See src/server/helpers/mongodb.js for an example of how the indexes are created for this collection.
- * @param { import('mongodb').Db } db
+ * @param { Db } db
  * @param { string } id
- * @returns {Promise<{}|null>}
+ * @returns {Promise<WithId<Document> | null>}
  */
-async function findExampleData(db, id) {
-  return await db
+function findExampleData(db, id) {
+  return db
     .collection('example-data')
     .findOne({ exampleId: id }, { projection: { _id: 0 } })
 }
 
 export { findExampleData }
+
+/**
+ * @import { Db, WithId, Document } from 'mongodb'
+ */
