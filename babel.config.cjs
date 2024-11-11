@@ -8,10 +8,7 @@ module.exports = {
     [
       '@babel/preset-env',
       {
-        modules: NODE_ENV === 'test' ? 'auto' : false,
-        targets: {
-          node: '20'
-        }
+        modules: NODE_ENV === 'test' ? 'auto' : false
       }
     ]
   ],
