@@ -125,6 +125,9 @@ module.exports = {
       env: {
         'jest/globals': true
       },
+      globals: {
+        fetchMock: true
+      },
       extends: [
         'plugin:jest-formatting/recommended',
         'plugin:jest/recommended',
