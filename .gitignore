@@ -11,3 +11,5 @@ coverage
 
 # @shelf/jest-mongodb generated file
 globalConfig.json
+
+tsconfig.tsbuildinfo
