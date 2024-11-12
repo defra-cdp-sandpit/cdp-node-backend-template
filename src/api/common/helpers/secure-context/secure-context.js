@@ -1,7 +1,7 @@
 import tls from 'node:tls'
 import { config } from '~/src/config/index.js'
 
-import { getTrustStoreCerts } from '~/src/helpers/secure-context/get-trust-store-certs.js'
+import { getTrustStoreCerts } from '~/src/api/common/helpers/secure-context/get-trust-store-certs.js'
 
 /**
  * Creates a new secure context loaded from Base64 encoded certs
@@ -30,7 +30,6 @@ export const secureContext = {
           return tlsSecureContext
         }
 
-        // @ts-expect-error TS2769
         server.decorate('server', 'secureContext', tls.createSecureContext())
       } else {
         server.logger.info('Custom secure context is disabled')
