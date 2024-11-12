@@ -75,7 +75,7 @@ npm start
 
 ### Npm scripts
 
-All available Npm scripts can be seen in [package.json](./package.json)
+All available Npm scripts can be seen in [package.json](./package.json).
 To view them in your command line run:
 
 ```bash
