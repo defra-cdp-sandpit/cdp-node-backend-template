@@ -1,5 +1,5 @@
-import { createServer } from '~/src/api/server.js'
-import { statusCodes } from '~/src/constants/status-codes.js'
+import { createServer } from '~/src/api/index.js'
+import { statusCodes } from '~/src/api/common/constants/status-codes.js'
 
 describe('#healthController', () => {
   /** @type {Server} */

@@ -1,5 +1,5 @@
 import { findAllExampleData } from '~/src/api/example/helpers/find-all-example-data.js'
-import { statusCodes } from '~/src/constants/status-codes.js'
+import { statusCodes } from '~/src/api/common/constants/status-codes.js'
 
 /**
  * Example controller

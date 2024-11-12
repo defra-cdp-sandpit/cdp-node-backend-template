@@ -4,7 +4,7 @@ import {
   StorageResolution
 } from 'aws-embedded-metrics'
 import { config } from '~/src/config/index.js'
-import { createLogger } from '~/src/helpers/logging/logger.js'
+import { createLogger } from '~/src/api/common/helpers/logging/logger.js'
 
 /**
  * @param {string} metricName

@@ -1,7 +1,7 @@
 import { StorageResolution, Unit } from 'aws-embedded-metrics'
 
 import { config } from '~/src/config/index.js'
-import { metricsCounter } from '~/src/helpers/metrics.js'
+import { metricsCounter } from '~/src/api/common/helpers/metrics.js'
 
 const mockPutMetric = jest.fn()
 const mockFlush = jest.fn()
@@ -14,7 +14,7 @@ jest.mock('aws-embedded-metrics', () => ({
     flush: mockFlush
   })
 }))
-jest.mock('~/src/helpers/logging/logger.js', () => ({
+jest.mock('~/src/api/common/helpers/logging/logger.js', () => ({
   createLogger: () => ({ error: (...args) => mockLoggerError(...args) })
 }))
 

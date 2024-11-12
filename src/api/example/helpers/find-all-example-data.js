@@ -1,6 +1,6 @@
 /**
  * Database helper. Returns all objects stored in the example-data collection in mongodb.
- * See src/server/helpers/mongodb.js for an example of how the indexes are created for this collection.
+ * See src/server/api/common/helpers/mongodb.js for an example of how the indexes are created for this collection.
  * @param { Db } db
  * @returns {Promise<WithId<Document>[]>}
  */

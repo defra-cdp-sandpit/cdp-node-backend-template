@@ -1,7 +1,7 @@
 import hapi from '@hapi/hapi'
 
-import { secureContext } from '~/src/helpers/secure-context/index.js'
-import { requestLogger } from '~/src/helpers/logging/request-logger.js'
+import { secureContext } from '~/src/api/common/helpers/secure-context/index.js'
+import { requestLogger } from '~/src/api/common/helpers/logging/request-logger.js'
 import { config } from '~/src/config/index.js'
 
 const mockAddCACert = jest.fn()
