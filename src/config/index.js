@@ -116,6 +116,14 @@ const config = convict({
     format: Boolean,
     default: isProduction,
     env: 'ENABLE_METRICS'
+  },
+  tracing: {
+    header: {
+      doc: 'Which header to track',
+      format: String,
+      default: 'x-cdp-request-id',
+      env: 'TRACING_HEADER'
+    }
   }
 })
 

@@ -1,5 +1,6 @@
 import { ecsFormat } from '@elastic/ecs-pino-format'
 import { config } from '~/src/config/index.js'
+import { traceIdMixin } from '~/src/api/common/helpers/logging/trace-id-mixin.js'
 
 const logConfig = config.get('log')
 const serviceName = config.get('serviceName')
@@ -10,14 +11,10 @@ const serviceVersion = config.get('serviceVersion')
  */
 const formatters = {
   ecs: {
-    ...ecsFormat(),
-    base: {
-      service: {
-        name: serviceName,
-        type: 'nodeJs',
-        version: serviceVersion
-      }
-    }
+    ...ecsFormat({
+      serviceVersion,
+      serviceName
+    })
   },
   'pino-pretty': { transport: { target: 'pino-pretty' } }
 }
@@ -33,7 +30,9 @@ export const loggerOptions = {
     remove: true
   },
   level: logConfig.level,
-  ...formatters[logConfig.format]
+  ...formatters[logConfig.format],
+  nesting: true,
+  mixin: traceIdMixin
 }
 
 /**
