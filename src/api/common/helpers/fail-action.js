@@ -10,6 +10,6 @@ const logger = createLogger()
  * @returns { never }
  */
 export function failAction(_request, _h, error) {
-  logger.error(error, error?.message)
+  logger.warn(error, error?.message)
   throw error
 }
