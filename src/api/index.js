@@ -9,8 +9,10 @@ import { failAction } from '~/src/api/common/helpers/fail-action.js'
 import { secureContext } from '~/src/api/common/helpers/secure-context/index.js'
 import { pulse } from '~/src/api/common/helpers/pulse.js'
 import { requestTracing } from '~/src/api/common/helpers/request-tracing.js'
+import { setupProxy } from '~/src/api/common/helpers/proxy/setup-proxy.js'
 
 async function createServer() {
+  setupProxy()
   const server = hapi.server({
     port: config.get('port'),
     routes: {
