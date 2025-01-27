@@ -7,6 +7,7 @@ const dirname = path.dirname(fileURLToPath(import.meta.url))
 const isProduction = process.env.NODE_ENV === 'production'
 const isDev = process.env.NODE_ENV === 'development'
 const isTest = process.env.NODE_ENV === 'test'
+
 const config = convict({
   serviceVersion: {
     doc: 'The service version, this variable is injected into your docker container in CDP environments',
@@ -82,13 +83,13 @@ const config = convict({
   mongoUri: {
     doc: 'URI for mongodb',
     format: String,
-    default: 'mongodb://127.0.0.1:27017/',
+    default: null,
     env: 'MONGO_URI'
   },
   mongoDatabase: {
     doc: 'database for mongodb',
     format: String,
-    default: 'cdp-node-backend-template',
+    default: null,
     env: 'MONGO_DATABASE'
   },
   httpProxy: {
