@@ -43,8 +43,8 @@ services:
 
   ################################################################################
 
-  # your-frontend:
-  #   image: defradigital/your-frontend:${YOUR_FRONTEND_VERSION:-latest}
+  # frontend:
+  #   image: defradigital/frontend:${FRONTEND_VERSION:-latest}
   #   ports:
   #     - '3000:3000'
   #   links:
@@ -66,7 +66,7 @@ services:
   #   networks:
   #     - cdp-tenant
 
-  your-backend:
+  backend:
     build: ./
     ports:
       - '3001:3001'
