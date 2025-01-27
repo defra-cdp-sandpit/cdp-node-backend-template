@@ -1,17 +1,16 @@
-import path from 'path'
-import hapi from '@hapi/hapi'
+import Hapi from '@hapi/hapi'
 
-import { config } from '~/src/config/index.js'
-import { router } from '~/src/api/router.js'
-import { requestLogger } from '~/src/api/common/helpers/logging/request-logger.js'
-import { mongoDb } from '~/src/api/common/helpers/mongodb.js'
-import { failAction } from '~/src/api/common/helpers/fail-action.js'
-import { secureContext } from '~/src/api/common/helpers/secure-context/index.js'
-import { pulse } from '~/src/api/common/helpers/pulse.js'
-import { requestTracing } from '~/src/api/common/helpers/request-tracing.js'
+import { config } from '../config/index.js'
+import { router } from './router.js'
+import { requestLogger } from './common/helpers/logging/request-logger.js'
+import { mongoDb } from './common/helpers/mongodb.js'
+import { failAction } from './common/helpers/fail-action.js'
+import { secureContext } from './common/helpers/secure-context/index.js'
+import { pulse } from './common/helpers/pulse.js'
+import { requestTracing } from './common/helpers/request-tracing.js'
 
 async function createServer() {
-  const server = hapi.server({
+  const server = Hapi.server({
     port: config.get('port'),
     routes: {
       validate: {
@@ -19,9 +18,6 @@ async function createServer() {
           abortEarly: false
         },
         failAction
-      },
-      files: {
-        relativeTo: path.resolve(config.get('root'), '.public')
       },
       security: {
         hsts: {
