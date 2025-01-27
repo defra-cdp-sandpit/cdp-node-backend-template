@@ -96,3 +96,4 @@ volumes:
 networks:
   cdp-tenant:
     driver: bridge
+    name: cdp-tenant
