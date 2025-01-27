@@ -20,9 +20,7 @@ export default {
     'index.js'
   ],
   coverageDirectory: '<rootDir>/coverage',
-  transform: {
-    '^.+\\.js$': 'babel-jest'
-  },
+  transform: {},
   transformIgnorePatterns: [
     `node_modules/(?!${[
       '@defra/hapi-tracing', // Supports ESM only

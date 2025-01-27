@@ -10,11 +10,7 @@ updates:
     groups:
       build:
         patterns:
-          - '@babel/*'
           - 'autoprefixer'
-          - 'babel-plugin-module-resolver'
-          - 'babel-loader'
-          - 'babel-plugin-transform-import-meta'
 
       lint:
         patterns:
@@ -31,7 +27,6 @@ updates:
 
       tools:
         patterns:
-          - 'babel-jest'
           - 'husky'
           - 'jest'
           - 'nodemon'
