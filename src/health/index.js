@@ -1,8 +1,5 @@
-import { healthController } from '~/src/api/health/controller.js'
+import { constants as httpConstants } from 'http2'
 
-/**
- * @satisfies {ServerRegisterPluginObject<void>}
- */
 const health = {
   plugin: {
     name: 'health',
@@ -10,14 +7,10 @@ const health = {
       server.route({
         method: 'GET',
         path: '/health',
-        ...healthController
+        handler: (_request, h) => h.response({ message: 'success' }).code(statusCodes.ok)
       })
     }
   }
 }
 
 export { health }
-
-/**
- * @import { ServerRegisterPluginObject } from '@hapi/hapi'
- */

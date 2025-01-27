@@ -49,12 +49,6 @@
   },
   "devDependencies": {
     "@shelf/jest-mongodb": "4.3.2",
-    "@types/convict": "6.1.6",
-    "@types/jest": "29.5.14",
-    "@types/lodash": "4.17.13",
-    "@types/node": "22.9.0",
-    "@types/nunjucks": "3.2.6",
-    "@types/webpack-assets-manifest": "5.1.4",
     "autoprefixer": "10.4.20",
     "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",
