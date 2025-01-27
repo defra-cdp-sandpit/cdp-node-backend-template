@@ -8,8 +8,6 @@ module.exports = {
       extends: [
         'standard',
         'plugin:import/recommended',
-        'plugin:import/typescript',
-        'plugin:jsdoc/recommended-typescript-flavor',
         'plugin:n/recommended',
         'plugin:promise/recommended',
         'plugin:@typescript-eslint/recommended-type-checked',
