@@ -1,8 +1,8 @@
 import { pino } from 'pino'
 
-import { loggerOptions } from '~/src/api/common/helpers/logging/logger-options.js'
+import { loggerOptions } from './logger-options.js'
 
-function createLogger() {
+function createLogger () {
   return pino(loggerOptions)
 }
 

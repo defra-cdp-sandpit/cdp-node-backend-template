@@ -1,7 +1,7 @@
 import Hapi from '@hapi/hapi'
 
 import { config } from '../config/index.js'
-import { router } from './router.js'
+import { router } from './plugins/router.js'
 import { requestLogger } from './common/helpers/logging/request-logger.js'
 import { mongoDb } from './common/helpers/mongodb.js'
 import { failAction } from './common/helpers/fail-action.js'
@@ -9,7 +9,7 @@ import { secureContext } from './common/helpers/secure-context/index.js'
 import { pulse } from './common/helpers/pulse.js'
 import { requestTracing } from './common/helpers/request-tracing.js'
 
-async function createServer() {
+async function createServer () {
   const server = Hapi.server({
     port: config.get('port'),
     routes: {

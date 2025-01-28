@@ -1,11 +1,11 @@
 import fetchMock from 'jest-fetch-mock'
 import { ProxyAgent } from 'undici'
 
-import { config } from '~/src/config/index.js'
-import { provideProxy, proxyFetch } from '~/src/api/common/helpers/proxy.js'
+import { config } from '../../config.js'
+import { provideProxy, proxyFetch } from './proxy.js'
 
 const mockLoggerDebug = jest.fn()
-jest.mock('~/src/api/common/helpers/logging/logger.js', () => ({
+jest.mock('./logging/logger.js', () => ({
   createLogger: () => ({ debug: (...args) => mockLoggerDebug(...args) })
 }))
 

@@ -1,5 +1,5 @@
 import { ecsFormat } from '@elastic/ecs-pino-format'
-import { config } from '~/src/config/index.js'
+import { config } from '../../../config.js'
 import { getTraceId } from '@defra/hapi-tracing'
 
 const logConfig = config.get('log')
@@ -32,7 +32,7 @@ export const loggerOptions = {
   level: logConfig.level,
   ...formatters[logConfig.format],
   nesting: true,
-  mixin() {
+  mixin () {
     const mixinValues = {}
     const traceId = getTraceId()
     if (traceId) {

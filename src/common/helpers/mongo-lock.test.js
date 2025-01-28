@@ -1,7 +1,7 @@
 import {
   acquireLock,
   requireLock
-} from '~/src/api/common/helpers/mongo-lock.js'
+} from './mongo-lock.js'
 
 describe('Lock Functions', () => {
   let locker

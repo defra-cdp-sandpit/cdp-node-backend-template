@@ -20,13 +20,7 @@ export default {
     'index.js'
   ],
   coverageDirectory: '<rootDir>/coverage',
-  transform: {},
-  transformIgnorePatterns: [
-    `node_modules/(?!${[
-      '@defra/hapi-tracing', // Supports ESM only
-      'node-fetch' // Supports ESM only
-    ].join('|')}/)`
-  ]
+  transform: {}
 }
 
 /**

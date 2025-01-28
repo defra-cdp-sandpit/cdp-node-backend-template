@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb'
 import { LockManager } from 'mongo-locks'
 
-import { config } from '~/src/config/index.js'
+import { config } from '../../config.js'
 
 /**
  * @satisfies { import('@hapi/hapi').ServerRegisterPluginObject<*> }
@@ -39,7 +39,6 @@ export const mongoDb = {
       server.decorate('request', 'db', () => db, { apply: true })
       server.decorate('request', 'locker', () => locker, { apply: true })
 
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       server.events.on('stop', async () => {
         server.logger.info('Closing Mongo client')
         await client.close(true)
@@ -58,7 +57,7 @@ export const mongoDb = {
  * @param {import('mongodb').Db} db
  * @returns {Promise<void>}
  */
-async function createIndexes(db) {
+async function createIndexes (db) {
   await db.collection('mongo-locks').createIndex({ id: 1 })
 
   // Example of how to create a mongodb index. Remove as required

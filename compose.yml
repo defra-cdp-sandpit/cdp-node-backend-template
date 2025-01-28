@@ -67,7 +67,9 @@ services:
   #     - cdp-tenant
 
   backend:
-    build: ./
+    build:
+      context: .
+      target: development
     ports:
       - '3001:3001'
     links:
@@ -87,6 +89,9 @@ services:
       MONGO_URI: mongodb://mongodb:27017/
     networks:
       - cdp-tenant
+    volumes:
+      - ./src:/home/node/src
+      - ./package.json:/home/node/package.json
 
 ################################################################################
 

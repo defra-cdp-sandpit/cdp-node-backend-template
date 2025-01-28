@@ -1,4 +1,4 @@
-import { failAction } from '~/src/api/common/helpers/fail-action.js'
+import { failAction } from './fail-action.js'
 
 describe('#fail-action', () => {
   test('Should throw expected error', () => {

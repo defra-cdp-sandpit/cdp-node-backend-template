@@ -1,7 +1,7 @@
 import { Db, MongoClient } from 'mongodb'
 import { LockManager } from 'mongo-locks'
 
-import { createServer } from '~/src/api/index.js'
+import { createServer } from '../../server.js'
 
 describe('#mongoDb', () => {
   /** @type {Server} */
