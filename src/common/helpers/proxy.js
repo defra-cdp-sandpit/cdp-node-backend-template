@@ -6,18 +6,7 @@ import { config } from '../../config.js'
 import { createLogger } from './logging/logger.js'
 
 const logger = createLogger()
-/**
- * @typedef Proxy
- * @property {URL} url
- * @property {number} port
- * @property {ProxyAgent} proxyAgent
- * @property {HttpsProxyAgent<string>} httpAndHttpsProxyAgent
- */
 
-/**
- * Provide ProxyAgent and HttpsProxyAgent when http/s proxy url config has been set
- * @returns {Proxy|null}
- */
 function provideProxy () {
   const proxyUrl = config.get('httpsProxy') ?? config.get('httpProxy')
 
@@ -45,12 +34,6 @@ function provideProxy () {
   }
 }
 
-/**
- * Provide fetch with dispatcher ProxyAgent when http/s proxy url config has been set
- * @param {string | URL } url
- * @param {RequestInit} options
- * @returns {Promise}
- */
 function proxyFetch (url, options) {
   const proxy = provideProxy()
 

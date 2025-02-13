@@ -6,10 +6,6 @@ import {
 import { config } from '../../config.js'
 import { createLogger } from './logging/logger.js'
 
-/**
- * @param {string} metricName
- * @param {number} value
- */
 const metricsCounter = async (metricName, value = 1) => {
   const isMetricsEnabled = config.get('isMetricsEnabled')
 

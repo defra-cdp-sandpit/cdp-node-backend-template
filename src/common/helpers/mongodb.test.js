@@ -4,7 +4,6 @@ import { LockManager } from 'mongo-locks'
 import { createServer } from '../../server.js'
 
 describe('#mongoDb', () => {
-  /** @type {Server} */
   let server
 
   describe('Set up', () => {
@@ -46,7 +45,3 @@ describe('#mongoDb', () => {
     })
   })
 })
-
-/**
- * @import { Server } from '@hapi/hapi'
- */

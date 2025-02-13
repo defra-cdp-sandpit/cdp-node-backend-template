@@ -3,19 +3,10 @@ import { LockManager } from 'mongo-locks'
 
 import { config } from '../../config.js'
 
-/**
- * @satisfies { import('@hapi/hapi').ServerRegisterPluginObject<*> }
- */
 export const mongoDb = {
   plugin: {
     name: 'mongodb',
     version: '1.0.0',
-    /**
-     *
-     * @param { import('@hapi/hapi').Server } server
-     * @param {{mongoUrl: string, databaseName: string, retryWrites: boolean, readPreference: string}} options
-     * @returns {Promise<void>}
-     */
     register: async function (server, options) {
       server.logger.info('Setting up MongoDb')
 
@@ -53,18 +44,9 @@ export const mongoDb = {
   }
 }
 
-/**
- * @param {import('mongodb').Db} db
- * @returns {Promise<void>}
- */
 async function createIndexes (db) {
   await db.collection('mongo-locks').createIndex({ id: 1 })
 
   // Example of how to create a mongodb index. Remove as required
   await db.collection('example-data').createIndex({ id: 1 })
 }
-
-/**
- * To be mixed in with Request|Server to provide the db decorator
- * @typedef {{db: import('mongodb').Db, locker: import('mongo-locks').LockManager }} MongoDBPlugin
- */
