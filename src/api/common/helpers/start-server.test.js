@@ -34,9 +34,7 @@ describe('#startServer', () => {
     process.env.PORT = '3098' // Set to obscure port to avoid conflicts
 
     createServerImport = await import('~/src/api/index.js')
-    startServerImport = await import(
-      '~/src//api/common/helpers/start-server.js'
-    )
+    startServerImport = await import('~/src/api/common/helpers/start-server.js')
 
     createServerSpy = jest.spyOn(createServerImport, 'createServer')
     hapiServerSpy = jest.spyOn(hapi, 'server')
