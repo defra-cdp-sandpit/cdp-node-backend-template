@@ -12,7 +12,7 @@
     "dev": "npm run server:watch",
     "dev:debug": "npm run server:debug",
     "format": "prettier --write \"**/*.{md,json}\"",
-    "format:check": "prettier --check \"**/*.{md,json,config.js}\"",
+    "format:check": "prettier --check \"**/*.{md,json}\"",
     "git:pre-commit-hook": "npm run format:check && npm run lint",
     "postinstall": "npm run setup:husky",
     "lint": "standard",
