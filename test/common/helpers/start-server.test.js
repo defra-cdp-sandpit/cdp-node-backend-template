@@ -33,9 +33,9 @@ describe('#startServer', () => {
     process.env = { ...PROCESS_ENV }
     process.env.PORT = '3098' // Set to obscure port to avoid conflicts
 
-    createServerImport = await import('../../server.js')
+    createServerImport = await import('../../../src/server.js')
     startServerImport = await import(
-      './start-server.js'
+      '../../../src/common/helpers/start-server.js'
     )
 
     createServerSpy = jest.spyOn(createServerImport, 'createServer')
